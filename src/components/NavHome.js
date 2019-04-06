@@ -37,26 +37,33 @@ export default class NavHome extends Component {
           <NavbarBrand href="/">Opencourse</NavbarBrand>
           <NavbarToggler onClick={this.toggleBrowse} />
           <Collapse isOpen={this.state.browseOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="mr-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Browse
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
+                  <i className="fas fa-list"></i> Categories
                 </DropdownItem>
                 <DropdownItem>
-                  Option 2
+                  <i className="fas fa-arrow-up"></i> Popular
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  Reset
+                  Create course
                 </DropdownItem>
               </DropdownMenu>
+
+
             </UncontrolledDropdown>
+            </Nav>
+            <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">About</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/components/">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
