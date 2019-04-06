@@ -18,18 +18,26 @@ class UserHome extends Component {
 
   render () {
 
-    let text = "user not signed in";
+    let text = "User not signed in";
     if (this.state.authUser != null) {
-      text = "Hello There " + this.props.firebase.auth.currentUser.displayName;
+      text = "Hello There, " + this.props.firebase.auth.currentUser.displayName;
     }
     console.log(this.props.firebase)
     return (
       <div>
         <Navbar />
-        <p>{text}</p>
+        <p style={pStyle}>{text}</p>
+        <p style={pStyle}> Your subscribed courses will appear here.</p>
       </div>
     )
   }
 }
 
 export default withFirebase(UserHome);
+
+const pStyle = {
+  margin: '2rem',
+  textAlign: 'center',
+  justifyContent: 'center',
+  color: 'dimmgrey'
+}
