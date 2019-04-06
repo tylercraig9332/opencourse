@@ -9,15 +9,26 @@ class Courses extends Component {
       courses: [],
       loading: false
     };
+    //this.docRef = this.docRef.bind(this)
   }
 
   componentDidMount() {
     this.setState({loading: true})
-     let docRef = this.props.firebase.firestore().collection('courses');
-     console.log(docRef);
+    let c = [];
+    this.docRef = this.props.firebase
+     this.docRef.firestore().collection('courses').onSnapshot(snap => {
+       snap.forEach(doc =>
+       c.push({...doc.data()}))
+     });
+     console.log(c)
+  }
+
+  componentDidUnMount() {
+    this.docRef()
   }
 
   render() {
+    
     return (
       <div>
       <Navbar />
