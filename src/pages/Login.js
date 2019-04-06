@@ -8,28 +8,34 @@ import {
   FormText,
   Button
 } from 'reactstrap'
-import NavBar from '../components/NavHome.js';
+import NavBar from '../components/Navbar.js';
+
+import '../components/Firebase/firebaseAuth.js';
+import 'firebaseui/dist/firebaseui.css';
 
 export default class Login extends Component {
   render(){
+    // DEPRECATED
+    const oldForm = (<Form style={formStyle}>
+      <div style={inputStyle}>
+      <FormGroup style={{backgroundColor: 'lightgrey'}}>
+        <Label for="email">Email</Label>
+        <Input style={inputStyle} type="email" name="email" id="email" placeholder="entersomething@something.com" />
+      </FormGroup>
+      <FormGroup>
+        <Label for="password">Password</Label>
+        <Input style={inputStyle} type="password" name="password" id="examplePassword" placeholder="Enter a password" />
+      </FormGroup>
+      <Button type="submit" color="primary">Submit</Button>
+      </div>
+
+    </Form>
+    );
+
     return(
       <div>
       <NavBar />
-
-        <Form style={formStyle}>
-        <div style={inputStyle}>
-        <FormGroup style={{backgroundColor: 'lightgrey'}}>
-          <Label for="email">Email</Label>
-          <Input style={inputStyle} type="email" name="email" id="email" placeholder="entersomething@something.com" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input style={inputStyle} type="password" name="password" id="examplePassword" placeholder="Enter a password" />
-        </FormGroup>
-        <Button type="submit" color="primary">Submit</Button>
-        </div>
-
-      </Form>
+      <div id="firebaseui-auth-container"></div>
     </div>
     )
 

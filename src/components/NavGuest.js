@@ -13,11 +13,11 @@ import {
   NavbarToggler
 } from 'reactstrap';
 
-import Firebase, { withFirebase } from './Firebase';
+import { withFirebase } from './Firebase';
 
-class NavHome extends Component {
-  constructor(props) {
-    super(props);
+export default class NavHome extends Component {
+  constructor() {
+    super();
 
     this.state = {
       browseOpen: false
@@ -34,7 +34,7 @@ class NavHome extends Component {
   }
 
   signOut() {
-    this.props.firebase.doSignOut()
+    //TODO:firebase.doSignOut()
     window.location.href = '/';
   }
 
@@ -71,7 +71,7 @@ class NavHome extends Component {
                 <NavLink href="/hello">About</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.signOut}>Sign Out</NavLink>
+                <NavLink href="/Login">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -80,5 +80,3 @@ class NavHome extends Component {
     );
   }
 }
-
-export default withFirebase(NavHome);
