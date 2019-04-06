@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {withFirebase} from '../components/Firebase';
 import Navbar from '../components/Navbar.js';
 
+import CourseCard from '../components/CourseCard.js'
+
 class Courses extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,9 @@ class Courses extends Component {
        snap.forEach(doc =>
        c.push({...doc.data()}))
      });
-     console.log(c)
+     this.setState({
+       courses: c
+     })
   }
 
   componentDidUnMount() {
@@ -28,11 +32,14 @@ class Courses extends Component {
   }
 
   render() {
-    
+    const cards = this.state.courses.map(course => {
+      return <CourseCard data={course}/>
+    })
+
     return (
       <div>
       <Navbar />
-      {this.state.courses}
+      {cards}
       </div>
     );
   }
