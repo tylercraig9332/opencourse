@@ -20,7 +20,7 @@ class UserHome extends Component {
 
     let text = "User not signed in";
     if (this.state.authUser != null) {
-      text = "Hello There, " + this.props.firebase.auth.currentUser.displayName;
+      text = "Hello there, " + this.props.firebase.auth.currentUser.displayName;
     }
     console.log(this.props.firebase)
     return (

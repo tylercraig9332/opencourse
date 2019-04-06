@@ -24,8 +24,6 @@ class Courses extends Component {
      });
      this.setState({
        courses: c
-     },() => {
-       //console.log(this.state.courses)
      })
 
   }

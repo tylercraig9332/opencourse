@@ -42,7 +42,7 @@ class NavHome extends Component {
     return(
       <div>
         <Navbar color="light" light expand="md" >
-          <NavbarBrand href="/">Opencourse</NavbarBrand>
+          <NavbarBrand href="/home">Opencourse</NavbarBrand>
           <NavbarToggler onClick={this.toggleBrowse} />
           <Collapse isOpen={this.state.browseOpen} navbar>
             <Nav className="mr-auto" navbar>

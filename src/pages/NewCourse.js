@@ -33,7 +33,6 @@ class NewCourse extends Component {
   }
 
   save() {
-    //TODO: save this json to db
     let db = this.props.firebase.firestore();
     /*db.settings({
       timestampsInSnapshots: true
@@ -43,16 +42,13 @@ class NewCourse extends Component {
       description: this.state.formContent.description,
       tags: this.state.formContent.tags
     })
-    //window.location.href = './courses'
     this.complete();
   }
 
   complete(){
     setInterval(function () {
-      window.location.href = './courses'
+      window.location.href = './editcourseview'
     }, 2000);
-    //clearInterval(interval);
-
   }
 
   onUserInput(event) {

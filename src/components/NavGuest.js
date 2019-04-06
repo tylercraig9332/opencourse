@@ -52,7 +52,7 @@ export default class NavHome extends Component {
                 <DropdownItem>
                   <i className="fas fa-list"></i> Categories
                 </DropdownItem>
-                <DropdownItem>
+                <DropdownItem href="/courses">
                   <i className="fas fa-arrow-up"></i> Popular
                 </DropdownItem>
               </DropdownMenu>
