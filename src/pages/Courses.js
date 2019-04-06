@@ -24,7 +24,10 @@ class Courses extends Component {
      });
      this.setState({
        courses: c
+     },() => {
+       //console.log(this.state.courses)
      })
+
   }
 
   componentDidUnMount() {
@@ -32,10 +35,13 @@ class Courses extends Component {
   }
 
   render() {
-    const cards = this.state.courses.map(course => {
-      return <CourseCard data={course}/>
-    })
 
+    //console.log(this.state.courses)
+    const cards = this.state.courses.map((course) => {
+
+      return <CourseCard data={course}/>
+
+    })
     return (
       <div>
       <Navbar />
