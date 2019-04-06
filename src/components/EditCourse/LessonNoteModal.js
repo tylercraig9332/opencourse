@@ -11,10 +11,23 @@ import {
 
 export default class LessonNoteModal extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
+      notes: null
+    };
+    this.update = this.update.bind(this);
+    this.save = this.save.bind(this);
+  }
 
-    }
+  update(event) {
+    this.setState({
+      notes: event.target.value
+    });
+  }
+
+  save() {
+    this.props.updateStack(this.state.notes, 'notes');
+    this.props.toggle();
   }
 
   render() {
@@ -22,10 +35,10 @@ export default class LessonNoteModal extends Component {
       <Modal isOpen={this.props.open} toggle={this.props.toggle}>
         <ModalHeader>Lesson Notes</ModalHeader>
         <ModalBody>
-          <Input type="textarea" style={{height: 300}}/>
+          <Input onChange={this.update} type="textarea" style={{height: 300}}/>
         </ModalBody>
         <ModalFooter>
-        <Button color="primary"> Save</Button>
+        <Button onClick={this.save} color="primary"> Save</Button>
         </ModalFooter>
       </Modal>
     )

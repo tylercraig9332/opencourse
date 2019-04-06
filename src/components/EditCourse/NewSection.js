@@ -20,6 +20,7 @@ export default class NewSection extends Component {
       mediaUrlModal: false,
       stack: props.stack
     };
+
     this.toggle = this.toggle.bind(this);
     this.quizModal = this.quizModal.bind(this)
     this.lessonNoteModal = this.lessonNoteModal.bind(this)
@@ -42,12 +43,12 @@ export default class NewSection extends Component {
   }
 
   render() {
-    let quiz = (<QuizModal open={this.state.quizModal} toggle={this.quizModal}/>);
-    let lesson = (<LessonNoteModal open={this.state.lessonNoteModal} toggle={this.lessonNoteModal}/>);
+    let quiz = (<QuizModal open={this.state.quizModal} toggle={this.quizModal} updateStack={this.props.updateStack}/>);
+    let lesson = (<LessonNoteModal open={this.state.lessonNoteModal} toggle={this.lessonNoteModal} updateStack={this.props.updateStack}/>);
     //let media = (this.state.mediaUrlModal) ? <MediaUrlModal /> : undefined;
 
     return (
-      <div >
+      <div style={{padding: '1rem'}}>
        {quiz}
        {lesson}
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
