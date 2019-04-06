@@ -9,6 +9,7 @@ import {
 // Components
 import Home from './Home.js';
 import App from './App.js';
+import Login from './pages/Login.js'
 // Misc
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +18,7 @@ ReactDOM.render(
   <Router>
     <Route exact path='/' component={Home}/>
     <Route exact path='/hello' component={App}/>
+    <Route exact path='/login' component={Login}/>
   </Router> ,document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
