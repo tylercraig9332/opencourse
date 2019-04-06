@@ -33,6 +33,16 @@ class NewCourse extends Component {
 
   save() {
     //TODO: save this json to db
+    let db = this.props.firebase.firestore();
+    /*db.settings({
+      timestampsInSnapshots: true
+    });*/
+    db.collection('courses').add({
+      title: this.state.formContent.title,
+      description: this.state.formContent.description,
+      tags: this.state.formContent.tags
+    })
+    window.location.href = './courses'
   }
 
   onUserInput(event) {
@@ -62,12 +72,11 @@ class NewCourse extends Component {
 
   handleTags(event) {
     let formc = Object.assign({}, this.state.formContent);
-
-    if (event.target.name == "courseTags")
-    {
-      formc.tags.splice((formc.tags.length - 1), 0, event.target.value)
-    }
-
+    let tagArray = event.target.value.split(',');
+    formc.tags = tagArray
+    this.setState({
+      formContent: formc
+    })
   }
 
   render() {

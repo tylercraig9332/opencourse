@@ -13,17 +13,14 @@ class Courses extends Component {
 
   componentDidMount() {
     this.setState({loading: true})
-    this.props.firebase.courses().on('value', snap => {
-      let data = snap.val()
-      alert(data)
-      this.setState({courses: data, loading: false})
-    })
-
+     let docRef = this.props.firebase.firestore().collection('courses');
+     console.log(docRef);
   }
 
   render() {
     return (
       <div>
+      <Navbar />
       {this.state.courses}
       </div>
     );
