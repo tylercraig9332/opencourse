@@ -23,6 +23,7 @@ class NewCourse extends Component {
     this.save = this.save.bind(this);
     this.onUserInput = this.onUserInput.bind(this);
     this.handleTags = this.handleTags.bind(this);
+    this.complete = this.complete.bind(this);
   }
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(auth => {
@@ -42,7 +43,16 @@ class NewCourse extends Component {
       description: this.state.formContent.description,
       tags: this.state.formContent.tags
     })
-    window.location.href = './courses'
+    //window.location.href = './courses'
+    this.complete();
+  }
+
+  complete(){
+    setInterval(function () {
+      window.location.href = './courses'
+    }, 2000);
+    //clearInterval(interval);
+
   }
 
   onUserInput(event) {
