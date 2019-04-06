@@ -11,7 +11,8 @@ import Home from './Home.js';
 import App from './App.js';
 import Login from './pages/Login.js';
 import UserHome from './pages/UserHome.js';
-import NewCourse from './pages/NewCourse.js'
+import NewCourse from './pages/NewCourse.js';
+import EditCourse from './pages/EditCourse.js';
 
 import Firebase, { FirebaseContext } from './components/Firebase';
 // Misc
@@ -27,6 +28,7 @@ ReactDOM.render(
     <Route exact path='/firebase' component={Firebase}/>
     <Route exact path='/home' component={UserHome}/>
     <Route exact path='/newcourse' component={NewCourse}/>
+    <Route exact path='/editcourseview' component={EditCourse}/>
   </Router>
   </FirebaseContext.Provider> ,document.getElementById('root'));
 
