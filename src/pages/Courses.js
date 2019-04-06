@@ -38,9 +38,7 @@ class Courses extends Component {
 
     //console.log(this.state.courses)
     const cards = this.state.courses.map((course) => {
-
       return <CourseCard data={course}/>
-
     })
     return (
       <div>
