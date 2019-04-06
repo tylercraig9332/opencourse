@@ -60,7 +60,7 @@ export default class NavHome extends Component {
             </Nav>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">About</NavLink>
+                <NavLink href="/hello">About</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/components/">Login</NavLink>
