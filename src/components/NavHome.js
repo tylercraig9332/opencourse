@@ -63,7 +63,7 @@ export default class NavHome extends Component {
                 <NavLink href="/hello">About</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/components/">Login</NavLink>
+                <NavLink href="/Login">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
