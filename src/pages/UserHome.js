@@ -20,8 +20,9 @@ class UserHome extends Component {
 
     let text = "user not signed in";
     if (this.state.authUser != null) {
-      text = "Hello There, you have succefully signed in";
+      text = "Hello There " + this.props.firebase.auth.currentUser.displayName;
     }
+    console.log(this.props.firebase)
     return (
       <div>
         <Navbar />

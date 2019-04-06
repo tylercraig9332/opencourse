@@ -58,9 +58,6 @@ export default class NavHome extends Component {
                   <i className="fas fa-arrow-up"></i> Popular
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
-                  Create course
-                </DropdownItem>
               </DropdownMenu>
 
 

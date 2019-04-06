@@ -58,7 +58,7 @@ class NavHome extends Component {
                   <i className="fas fa-arrow-up"></i> Popular
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
+                <DropdownItem href='/newcourse'>
                   Create course
                 </DropdownItem>
               </DropdownMenu>

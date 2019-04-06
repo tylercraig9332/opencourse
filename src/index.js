@@ -11,6 +11,8 @@ import Home from './Home.js';
 import App from './App.js';
 import Login from './pages/Login.js';
 import UserHome from './pages/UserHome.js';
+import NewCourse from './pages/NewCourse.js'
+
 import Firebase, { FirebaseContext } from './components/Firebase';
 // Misc
 import * as serviceWorker from './serviceWorker';
@@ -24,6 +26,7 @@ ReactDOM.render(
     <Route exact path='/login' component={Login}/>
     <Route exact path='/firebase' component={Firebase}/>
     <Route exact path='/home' component={UserHome}/>
+    <Route exact path='/newcourse' component={NewCourse}/>
   </Router>
   </FirebaseContext.Provider> ,document.getElementById('root'));
 
