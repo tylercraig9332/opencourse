@@ -9,7 +9,15 @@ class Courses extends Component {
     super(props);
     this.state = {
       courses: [],
-      loading: false
+      loading: false,
+      cart: [],
+      shop: [
+            {id: 35, name: 'jumper', color: 'red', price: 20},
+            {id: 42, name: 'shirt', color: 'blue', price: 15},
+            {id: 56, name: 'pants', color: 'green', price: 25},
+            {id: 71, name: 'socks', color: 'black', price: 5},
+            {id: 72, name: 'socks', color: 'white', price: 5},
+      ]
     };
     //this.docRef = this.docRef.bind(this)
   }
@@ -33,15 +41,18 @@ class Courses extends Component {
   }
 
   render() {
-
-    //console.log(this.state.courses)
-    const cards = this.state.courses.map((course) => {
-      return <CourseCard data={course}/>
-    })
+//figured out how to iterate over an array. But we still need to figure out how
+//but our courses data inside
     return (
       <div>
-      <Navbar />
-      {cards}
+        <Navbar />
+        <div class="card-list">
+          {
+            this.state.shop.map((item, key) =>
+              <CourseCard item={item} key={item.id} />
+            )
+          }
+        </div>
       </div>
     );
   }

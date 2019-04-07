@@ -12,6 +12,8 @@ import {
 
 
 export default class CourseCard extends Component {
+
+
   componentDidMount(){
     //console.log(this.props.data)
   }
@@ -23,12 +25,13 @@ export default class CourseCard extends Component {
 
 
 
-
+//figured out how to iterate over an array. But we still need to figure out how
+//but our courses data inside
     return(
       <div>
         <Card>
         <CardBody>
-          <CardTitle >Card title</CardTitle>
+          <CardTitle >{this.props.item.name}</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
           <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
           <Button>Button</Button>
