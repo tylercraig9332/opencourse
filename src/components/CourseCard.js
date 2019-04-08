@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import NavBar from './Navbar.js';
 import {
   Card,
-  CardImg,
+  //CardImg,
   CardBody,
   CardSubtitle,
   CardTitle,

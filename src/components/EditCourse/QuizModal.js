@@ -23,10 +23,10 @@ export default class QuizModal extends Component {
 
   update(event) {
     //let d = Object.assign({}, this.state.data);
-    if (event.target.id == 'title') {
+    if (event.target.id === 'title') {
       //d.title = event.target.value
     }
-    if (event.target.id == 'answer') {
+    if (event.target.id === 'answer') {
       //d.ans
     }
   }

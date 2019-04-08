@@ -1,13 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Option,
-  FormText,
-  Button
-} from 'reactstrap'
 import NavBar from '../components/Navbar.js';
 
 import '../components/Firebase/firebaseAuth.js';

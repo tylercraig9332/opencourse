@@ -28,10 +28,10 @@ class EditCourse extends Component {
 
   updateStack(data, key) {
     let newstack = [...this.state.stack]
-    if (key == 'notes') {
+    if (key === 'notes') {
       newstack.push(<LectureNote data={data} key={newstack.length}/>);
     }
-    else if (key == 'quiz') {
+    else if (key === 'quiz') {
       newstack.push(<Quiz data={data} key={newstack.length}/>)
     }
     this.setState({stack: newstack})

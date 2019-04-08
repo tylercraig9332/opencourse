@@ -10,7 +10,7 @@ export default class Launch extends Component {
       <div className="jumbotron" style={jumbotronStyle}>
         <h1>Welcome to Opencourse!</h1>
         <p>Where knowlege is open and learning is free</p>
-        <img style={{maxWidth: 475, maxHeight: 400}} src={require("../static/janko-ferlic-174927-unsplash.jpg")}/>
+        <img alt="Opencourse Library" style={{maxWidth: 475, maxHeight: 400}} src={require("../static/janko-ferlic-174927-unsplash.jpg")}/>
         <br />
         <Button href="/login" color="primary" size="lg" style={{margin: 10}}>Start</Button>
         </div>

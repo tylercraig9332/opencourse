@@ -35,6 +35,6 @@ export default class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
-  course = (courseId) => this.db.ref('courses/${courseId}');
+  //course = (courseId) => this.db.ref('courses/${courseId}');
   courses = () => this.db.doc('courses').get().ref();
 }

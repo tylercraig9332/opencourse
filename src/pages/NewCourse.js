@@ -54,7 +54,7 @@ class NewCourse extends Component {
   onUserInput(event) {
     let formc = Object.assign({}, this.state.formContent);
 
-    if (event.target.name == "courseTitle")
+    if (event.target.name === "courseTitle")
     {
       formc.title = event.target.value;
       this.setState({
@@ -63,7 +63,7 @@ class NewCourse extends Component {
         console.log(this.state.formContent)
       })
     }
-    if (event.target.name == "courseDescription")
+    if (event.target.name === "courseDescription")
     {
       formc.description = event.target.value;
       this.setState({
