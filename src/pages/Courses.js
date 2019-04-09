@@ -37,8 +37,10 @@ class Courses extends Component {
     let c = []
     this.docRef = this.props.firebase
     this.docRef.firestore().collection('courses').onSnapshot(snap => {
-      snap.forEach(doc =>
-      c.push({...doc.data()}))
+      snap.forEach(doc => {
+        c.push({...doc.data()})
+        c[c.length - 1].id = doc.id
+    })
       this.setState({courses: c})
     });
     this.setState({loading: false})

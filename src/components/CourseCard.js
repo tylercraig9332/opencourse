@@ -6,26 +6,31 @@ import {
   CardSubtitle,
   CardTitle,
   CardText,
-  Button
+  Button,
+  ButtonGroup
 } from 'reactstrap';
 
 
 export default class CourseCard extends Component {
 
+  constructor() {
+    super();
+
+    this.viewCourse = this.viewCourse.bind(this);
+  }
 
   componentDidMount(){
     //console.log(this.props.item)
   }
 
+  viewCourse() {
+    window.location.href = "/course/" + this.props.item.id;
+  }
+
 
   render() {
     //console.log(this.props.data)
-
-
-
-
-//figured out how to iterate over an array. But we still need to figure out how
-//but our courses data inside
+    // TODO: remove the edit for those who don't have access to editing it
     return(
       <div style={cardStyle}>
         <Card>
@@ -33,7 +38,10 @@ export default class CourseCard extends Component {
           <CardTitle>Title: {this.props.item.title}</CardTitle>
           <CardSubtitle>Tags: {this.props.item.tags}</CardSubtitle>
           <CardText>Description: {this.props.item.description}</CardText>
-          <Button>Button</Button>
+          <ButtonGroup>
+            <Button color="secondary" outline>Edit</Button>
+            <Button onClick={this.viewCourse} color="primary" >View</Button>
+          </ButtonGroup>
         </CardBody>
         </Card>
       </div>
