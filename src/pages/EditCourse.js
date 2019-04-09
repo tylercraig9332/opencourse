@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import {
-  ListGroup
+  ListGroup,
+  Button
 } from 'reactstrap';
 import { withFirebase } from '../components/Firebase';
 import Navbar from '../components/Navbar.js';
 
-import NewSectionDropDown from '../components/EditCourse/NewSection.js';
-import LectureNote from '../components/EditCourse/LectureNote.js';
-import Quiz from '../components/EditCourse/Quiz.js';
+import NewLesson from './NewLesson.js';
 
 class EditCourse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stack: []
+      lessons: [<NewLesson key={0} id={'1'} removeLesson={this.removeLesson.bind(this)}/>]
     }
 
-    this.updateStack = this.updateStack.bind(this)
+    this.newLesson = this.newLesson.bind(this)
+    this.removeLesson = this.removeLesson.bind(this)
   }
 
   componentDidMount() {
@@ -26,15 +26,22 @@ class EditCourse extends Component {
     });
   }
 
-  updateStack(data, key) {
-    let newstack = [...this.state.stack]
-    if (key === 'notes') {
-      newstack.push(<LectureNote data={data} key={newstack.length}/>);
-    }
-    else if (key === 'quiz') {
-      newstack.push(<Quiz data={data} key={newstack.length}/>)
-    }
-    this.setState({stack: newstack})
+  newLesson() {
+    let l = [...this.state.lessons];
+    let lid = l.length + 1
+    l.push(<NewLesson key={lid - 1} id={lid.toString()} removeLesson={this.removeLesson}/>)
+    this.setState({
+      lessons: l
+    })
+  }
+
+  removeLesson(event) {
+    // TODO
+    console.log("from remove")
+    console.log(event)
+    let id = 1
+    let l = [...this.state.lessons];
+    l.splice(id,1);
   }
 
   render() {
@@ -45,9 +52,9 @@ class EditCourse extends Component {
         <h1 style={{color: 'dimgrey'}} >Course Creation</h1>
         <h6 style={{color: 'dimgrey'}}> Set up the structure and content of your course</h6>
         <ListGroup>
-          {this.state.stack}
+          {this.state.lessons}
         </ListGroup>
-        <NewSectionDropDown stack={this.state.stack} updateStack={this.updateStack}/>
+        <Button onClick={this.newLesson}>New Lesson <i className="fas fa-plus-circle"></i></Button>
         </div>
       </div>
     );

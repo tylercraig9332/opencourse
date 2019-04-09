@@ -48,7 +48,7 @@ export default class NewSection extends Component {
     //let media = (this.state.mediaUrlModal) ? <MediaUrlModal /> : undefined;
 
     return (
-      <div style={{padding: '1rem'}}>
+      <div>
        {quiz}
        {lesson}
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -58,10 +58,12 @@ export default class NewSection extends Component {
           <DropdownMenu>
             <DropdownItem header>Lesson</DropdownItem>
             <DropdownItem onClick={this.lessonNoteModal}>Lesson Notes</DropdownItem>
+            <DropdownItem >Vocabulary Review</DropdownItem>
             <DropdownItem divider />
             <DropdownItem header>Quiz</DropdownItem>
-            <DropdownItem onClick={this.quizModal}>Multiple Choice</DropdownItem>
+            <DropdownItem onClick={this.quizModal}>Custom Multiple Choice</DropdownItem>
             <DropdownItem>Group-pairs</DropdownItem>
+            <DropdownItem>Vocabulary Quiz</DropdownItem>
             <DropdownItem divider />
             <DropdownItem header>Media</DropdownItem>
             <DropdownItem>Image</DropdownItem>

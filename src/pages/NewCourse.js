@@ -18,7 +18,8 @@ class NewCourse extends Component {
         title: null,
         description: null,
         tags: []
-      }
+      },
+      loading: false
     }
     this.save = this.save.bind(this);
     this.onUserInput = this.onUserInput.bind(this);
@@ -33,6 +34,7 @@ class NewCourse extends Component {
   }
 
   save() {
+    this.setState({loading: true})
     let db = this.props.firebase.firestore();
     /*db.settings({
       timestampsInSnapshots: true
@@ -86,9 +88,14 @@ class NewCourse extends Component {
   }
 
   render() {
+    let loading = (this.state.loading) ?
+    (<div style={border} className="alert alert-info" role="alert">
+      <i className="fas fa-info-circle"></i> Loading
+    </div>) : (undefined)
     return (
       <div>
         <Navbar />
+        {loading}
         <h1 style={title}>New Course:</h1>
         <div style={border}>
           <Form >
