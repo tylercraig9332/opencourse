@@ -14,7 +14,7 @@ export default class CourseCard extends Component {
 
 
   componentDidMount(){
-    //console.log(this.props.data)
+    //console.log(this.props.item)
   }
 
 
@@ -30,9 +30,9 @@ export default class CourseCard extends Component {
       <div>
         <Card>
         <CardBody>
-          <CardTitle >{this.props.item.name}</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <CardTitle>Title: {this.props.item.title}</CardTitle>
+          <CardSubtitle>Tags: {this.props.item.tags}</CardSubtitle>
+          <CardText>Description: {this.props.item.description}</CardText>
           <Button>Button</Button>
         </CardBody>
         </Card>

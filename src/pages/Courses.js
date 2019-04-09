@@ -24,16 +24,18 @@ class Courses extends Component {
 
   componentDidMount() {
     this.setState({loading: true})
-    let c = [];
-    this.docRef = this.props.firebase
-     this.docRef.firestore().collection('courses').onSnapshot(snap => {
-       snap.forEach(doc =>
-       c.push({...doc.data()}))
-     });
-     this.setState({
-       courses: c
-     })
+    this.load()
+  }
 
+  load() {
+    let c = []
+    this.docRef = this.props.firebase
+    this.docRef.firestore().collection('courses').onSnapshot(snap => {
+      snap.forEach(doc =>
+      c.push({...doc.data()}))
+      this.setState({courses: c})
+    });
+    this.setState({loading: false})
   }
 
   componentDidUnMount() {
@@ -43,15 +45,15 @@ class Courses extends Component {
   render() {
 //figured out how to iterate over an array. But we still need to figure out how
 //but our courses data inside
+
+    let courses = this.state.courses.map((course) =>
+      <CourseCard item={course} key={course.title} />
+    )
     return (
       <div>
         <Navbar />
-        <div class="card-list">
-          {
-            this.state.shop.map((item, key) =>
-              <CourseCard item={item} key={item.id} />
-            )
-          }
+        <div className="card-list">
+          {courses}
         </div>
       </div>
     );
