@@ -3,6 +3,12 @@ import {withFirebase} from '../components/Firebase';
 import Navbar from '../components/Navbar.js';
 
 import CourseCard from '../components/CourseCard.js'
+import {
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
+
 
 class Courses extends Component {
   constructor(props) {
@@ -52,9 +58,17 @@ class Courses extends Component {
     return (
       <div>
         <Navbar />
-        <div className="card-list">
-          {courses}
-        </div>
+        <Container>
+        <Row>
+        <Col>
+          <div>
+          <Row>
+            {courses}
+            </Row>
+          </div>
+          </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

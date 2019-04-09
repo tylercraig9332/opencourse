@@ -27,7 +27,7 @@ export default class CourseCard extends Component {
 //figured out how to iterate over an array. But we still need to figure out how
 //but our courses data inside
     return(
-      <div>
+      <div style={cardStyle}>
         <Card>
         <CardBody>
           <CardTitle>Title: {this.props.item.title}</CardTitle>
@@ -39,4 +39,8 @@ export default class CourseCard extends Component {
       </div>
     )
   }
+}
+
+const cardStyle = {
+  width: 350
 }
