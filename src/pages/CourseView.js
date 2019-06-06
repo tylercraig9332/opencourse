@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withFirebase} from '../components/Firebase';
-import NavBar from '../components/Navbar.js'
 
 class CourseView extends Component {
   constructor() {
@@ -48,7 +47,6 @@ class CourseView extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <h1>title: {this.state.title}</h1>
         <p>desc: {this.state.description}</p>
         <p>Tags: {this.state.tags}</p>

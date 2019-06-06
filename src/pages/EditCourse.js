@@ -4,7 +4,6 @@ import {
   Button
 } from 'reactstrap';
 import { withFirebase } from '../components/Firebase';
-import Navbar from '../components/Navbar.js';
 
 import NewLesson from './NewLesson.js';
 
@@ -47,7 +46,6 @@ class EditCourse extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div style={editStyle}>
         <h1 style={{color: 'dimgrey'}} >Course Creation</h1>
         <h6 style={{color: 'dimgrey'}}> Set up the structure and content of your course</h6>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withFirebase} from '../components/Firebase';
-import Navbar from '../components/Navbar.js';
 
 import CourseCard from '../components/CourseCard.js'
 import {
@@ -59,7 +58,6 @@ class Courses extends Component {
     )
     return (
       <div>
-        <Navbar />
         <Container>
         <Row>
         <Col>

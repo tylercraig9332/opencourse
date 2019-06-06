@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Navbar.js';
 
 import { withFirebase } from '../components/Firebase';
 
@@ -25,7 +24,6 @@ class UserHome extends Component {
     console.log(this.props.firebase)
     return (
       <div>
-        <Navbar />
         <p style={pStyle}>{text}</p>
         <p style={pStyle}> Your subscribed courses will appear here.</p>
       </div>

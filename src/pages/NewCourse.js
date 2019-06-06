@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { withFirebase } from '../components/Firebase';
-import Navbar from '../components/Navbar.js';
 import {
   Button,
   Form,
@@ -94,7 +93,6 @@ class NewCourse extends Component {
     </div>) : (undefined)
     return (
       <div>
-        <Navbar />
         {loading}
         <h1 style={title}>New Course:</h1>
         <div style={border}>
