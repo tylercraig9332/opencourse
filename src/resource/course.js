@@ -1,7 +1,8 @@
 const course = {
   title: null,
   description: null,
-  tags: []
+  tags: [],
+  author: null
 }
 
 export default course;

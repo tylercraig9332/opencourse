@@ -17,6 +17,7 @@ class CourseEdit extends Component {
       id: props.location.pathname.split('/')[2],
       title: "",
       tags: [],
+      author: null,
       description: "",
       loading: true
     }
@@ -54,11 +55,16 @@ class CourseEdit extends Component {
       title: data.title,
       tags: data.tags,
       description: data.description,
-      loading: false
+      author: data.author,
+      loading: false,
     });
   }
 
   save() {
+    if (this.state.author != this.props.firebase.auth.currentUser.uid) {
+      alert("you do not have permission to edit this course");
+      window.location.href = 'courses/';
+    }
     this.setState({loading: true});
     let db = this.props.firebase.firestore();
 

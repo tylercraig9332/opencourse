@@ -39,14 +39,15 @@ class NewCourse extends Component {
     db.collection('courses').add({
       title: this.state.formContent.title,
       description: this.state.formContent.description,
-      tags: this.state.formContent.tags
+      tags: this.state.formContent.tags,
+      author: this.props.firebase.auth.currentUser.uid
     })
     this.complete();
   }
 
   complete(){
     setInterval(function () {
-      window.location.href = './editcourseview'
+      window.location.href = './editcourse'
     }, 2000);
   }
 
@@ -68,7 +69,7 @@ class NewCourse extends Component {
       this.setState({
         formContent: formc
       },() => {
-        console.log(this.state.formContent)
+        //console.log(this.state.formContent)
       })
     }
 

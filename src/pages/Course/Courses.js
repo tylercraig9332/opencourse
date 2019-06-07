@@ -54,7 +54,7 @@ class Courses extends Component {
 //but our courses data inside
 
     let courses = this.state.courses.map((course) =>
-      <CourseCard item={course} key={course.title} />
+      <CourseCard item={course} key={course.title} uid={this.props.firebase.auth.currentUser.uid}/>
     )
     return (
       <div>
