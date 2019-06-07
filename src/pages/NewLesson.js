@@ -11,9 +11,9 @@ import {
   Input
 } from 'reactstrap'
 
-import NewSectionDropDown from '../components/EditCourse/NewSection.js';
-import LectureNote from '../components/EditCourse/LectureNote.js';
-import Quiz from '../components/EditCourse/Quiz.js';
+import NewSectionDropDown from './components/EditCourse/NewSection.js';
+import LectureNote from './components/EditCourse/LectureNote.js';
+import Quiz from './components/EditCourse/Quiz.js';
 
 
 export default class NewLesson extends Component {

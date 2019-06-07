@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../components/Firebase/firebaseAuth.js';
+import './components/Firebase/firebaseAuth.js';
 import 'firebaseui/dist/firebaseui.css';
 
 export default class Login extends Component {

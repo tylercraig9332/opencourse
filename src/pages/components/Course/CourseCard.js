@@ -17,6 +17,7 @@ export default class CourseCard extends Component {
     super();
 
     this.viewCourse = this.viewCourse.bind(this);
+    this.editCourse = this.editCourse.bind(this);
   }
 
   componentDidMount(){
@@ -27,6 +28,9 @@ export default class CourseCard extends Component {
     window.location.href = "/course/" + this.props.item.id;
   }
 
+  editCourse() {
+    window.location.href = '/editcourse/' + this.props.item.id;
+  }
 
   render() {
     //console.log(this.props.data)
@@ -39,7 +43,7 @@ export default class CourseCard extends Component {
           <CardSubtitle>Tags: {this.props.item.tags}</CardSubtitle>
           <CardText>Description: {this.props.item.description}</CardText>
           <ButtonGroup>
-            <Button color="secondary" outline>Edit</Button>
+            <Button onClick={this.editCourse} color="secondary" outline>Edit</Button>
             <Button onClick={this.viewCourse} color="primary" >View</Button>
           </ButtonGroup>
         </CardBody>

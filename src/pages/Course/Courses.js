@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withFirebase} from '../components/Firebase';
 
-import CourseCard from '../components/CourseCard.js'
+import CourseCard from '../components/Course/CourseCard.js'
 import {
   Container,
   Row,

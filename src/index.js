@@ -7,17 +7,17 @@ import {
 } from 'react-router-dom';
 
 // Components
-import Navbar from './components/Navbar.js';
+import Navbar from './pages/components/Navbar.js';
 import Home from './Home.js';
 import App from './App.js';
 import Login from './pages/Login.js';
 import UserHome from './pages/UserHome.js';
-import NewCourse from './pages/NewCourse.js';
-import EditCourse from './pages/EditCourse.js';
-import Courses from './pages/Courses.js';
-import CourseView from './pages/CourseView.js';
+import NewCourse from './pages/Course/NewCourse.js';
+import CourseEdit from './pages/Course/CourseEdit.js';
+import Courses from './pages/Course/Courses.js';
+import CourseView from './pages/Course/CourseView.js';
 
-import Firebase, { FirebaseContext } from './components/Firebase';
+import Firebase, { FirebaseContext } from './pages/components/Firebase';
 // Misc
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,7 +32,7 @@ ReactDOM.render(
     <Route exact path='/firebase' component={Firebase}/>
     <Route path='/home' component={UserHome}/>
     <Route exact path='/newcourse' component={NewCourse}/>
-    <Route path='/editcourseview/' component={EditCourse}/>
+    <Route path='/editcourse/' component={CourseEdit}/>
     <Route exact path='/courses' component={Courses}/>
     <Route path='/course/' component={CourseView}/>
   </Router>

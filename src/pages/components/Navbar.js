@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../components/Firebase';
+import { withFirebase } from './Firebase';
 import NavHome from './Navbar/NavHome.js';
-import NavGuest from './NavBar/NavGuest.js';
+import NavGuest from './Navbar/NavGuest.js';
 
 class NavBar extends Component {
   constructor(props) {

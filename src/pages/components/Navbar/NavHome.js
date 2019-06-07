@@ -13,7 +13,7 @@ import {
   NavbarToggler
 } from 'reactstrap';
 
-import { withFirebase } from './Firebase';
+import { withFirebase } from '../Firebase';
 
 class NavHome extends Component {
   constructor(props) {

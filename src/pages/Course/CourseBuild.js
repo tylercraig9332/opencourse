@@ -7,7 +7,7 @@ import { withFirebase } from '../components/Firebase';
 
 import NewLesson from './NewLesson.js';
 
-class EditCourse extends Component {
+class CourseBuild extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ class EditCourse extends Component {
 
 }
 
-export default withFirebase(EditCourse);
+export default withFirebase(CourseBuild);
 
 const editStyle = {
   alignItems: 'center',

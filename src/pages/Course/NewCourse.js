@@ -8,16 +8,14 @@ import {
   Label
 } from 'reactstrap';
 
+import CourseResource from '../../resource/course.js';
+
 
 class NewCourse extends Component {
   constructor() {
     super();
     this.state = {
-      formContent: {
-        title: null,
-        description: null,
-        tags: []
-      },
+      formContent: CourseResource,
       loading: false
     }
     this.save = this.save.bind(this);
