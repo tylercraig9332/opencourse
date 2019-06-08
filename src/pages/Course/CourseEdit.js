@@ -25,7 +25,8 @@ class CourseEdit extends Component {
     this.load = this.load.bind(this);
     this.init = this.init.bind(this);
     this.save = this.save.bind(this);
-    this.handleTags = this.handleTags.bind(this)
+    this.onUserInput = this.onUserInput.bind(this);
+    this.handleTags = this.handleTags.bind(this);
   }
 
   componentDidMount() {
@@ -71,7 +72,23 @@ class CourseEdit extends Component {
     let docRef = db.collection('courses').doc(this.state.id)
     docRef.get().then((doc) => {
       // TODO: Update doc with new fields.
+      doc.update({'title': this.state.title})
     })
+  }
+
+  onUserInput(event) {
+    if (event.target.name === "courseTitle")
+    {
+      this.setState({
+        title: event.target.value
+      });
+    }
+    if (event.target.name === "courseDescription")
+    {
+      this.setState({
+        description: event.target.value
+      });
+    }
   }
 
   handleTags() {

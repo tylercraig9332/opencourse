@@ -7,14 +7,18 @@ import {
   CardFooter,
   CardSubtitle,
   CardText,
-  Button,
-  ButtonGroup,
   Tooltip,
   Badge
 } from 'reactstrap';
 
-import Tag from './Tag.js';
+import {
+  Button
+} from 'antd';
 
+import Tag from './Tag.js';
+import Icon from '../util/Icon.js';
+
+const ButtonGroup = Button.Group;
 
 export default class CourseCard extends Component {
 
@@ -64,12 +68,10 @@ export default class CourseCard extends Component {
       :
         <Tooltip placement="top" target={`unfave-${this.props.item.id}`} isOpen={this.state.favOpen} toggle={this.favoriteTip}>Add to favorites</Tooltip>
     */ // TODO: This breaks everything for some reason
-    let buttonGroup = (this.props.item.author === this.props.uid) ?
-      (<ButtonGroup>
-        <Button onClick={this.editCourse} color="secondary" outline>Edit <i className="far fa-edit"></i></Button>
-        <Button onClick={this.viewCourse} color="primary" outline>Preview <i className="far fa-share-square"></i></Button>
-      </ButtonGroup>) :
-      <ButtonGroup><Button onClick={this.viewCourse} color="primary" outline>Preview <i className="far fa-share-square"></i></Button></ButtonGroup>
+    let authorEdit = (this.props.item.author === this.props.uid) ?
+        <span style={icon}><Icon type="edit" action={this.editCourse} /></span> // the span allows for me to move it to the right of the card
+       :
+        <span style={icon}><Icon type="user" action={this.viewCourse} /></span>
 
     let tags = this.props.item.tags.map((tagName) => {
       return (
@@ -82,8 +84,9 @@ export default class CourseCard extends Component {
       <div style={cardStyle}>
         <Card style={cardDim}>
         <CardHeader>
-        {this.props.item.title}
-        <a onClick={this.updateFavorite}>{fav}</a>
+        <h5>{this.props.item.title}
+        {authorEdit}
+        <a onClick={this.updateFavorite}>{fav}</a></h5>
         <Tooltip placement="top" target={`fave-${this.props.item.id}`} isOpen={this.state.favOpen} toggle={this.favoriteTip}>Toggle Favorite</Tooltip>
         </CardHeader>
         <CardBody>
@@ -92,7 +95,7 @@ export default class CourseCard extends Component {
           <p style={{position: 'absolute', bottom: 55}}><hr></hr>Tags: {tags}</p>
         </CardBody>
         <CardFooter>
-          {buttonGroup}
+          <Button onClick={this.viewCourse} type="primary" block>Preview</Button>
         </CardFooter>
         </Card>
       </div>
@@ -110,7 +113,12 @@ const cardDim = {
 }
 
 const favorite = {
-  float: 'right',
+  marginLeft: '.5em',
   color: 'green',
-  marginTop: 3
+  marginTop: 3,
+  fontSize: '.85em'
+}
+
+const icon = {
+  float: 'right'
 }
