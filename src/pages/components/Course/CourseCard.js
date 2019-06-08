@@ -66,10 +66,10 @@ export default class CourseCard extends Component {
     */ // TODO: This breaks everything for some reason
     let buttonGroup = (this.props.item.author === this.props.uid) ?
       (<ButtonGroup>
-        <Button onClick={this.editCourse} color="secondary" outline>Edit</Button>
-        <Button onClick={this.viewCourse} color="primary" outline>Preview</Button>
+        <Button onClick={this.editCourse} color="secondary" outline>Edit <i className="far fa-edit"></i></Button>
+        <Button onClick={this.viewCourse} color="primary" outline>Preview <i className="far fa-share-square"></i></Button>
       </ButtonGroup>) :
-      <ButtonGroup><Button onClick={this.viewCourse} color="primary" outline>Preview</Button></ButtonGroup>
+      <ButtonGroup><Button onClick={this.viewCourse} color="primary" outline>Preview <i className="far fa-share-square"></i></Button></ButtonGroup>
 
     let tags = this.props.item.tags.map((tagName) => {
       return (
