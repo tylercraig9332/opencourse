@@ -47,7 +47,7 @@ class NewCourse extends Component {
 
   complete(){
     setInterval(function () {
-      window.location.href = './editcourse'
+      window.location.href = './build/'
     }, 2000);
   }
 

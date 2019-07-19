@@ -13,6 +13,7 @@ import App from './App.js';
 import Login from './pages/Login.js';
 import UserHome from './pages/UserHome.js';
 import NewCourse from './pages/Course/NewCourse.js';
+import CourseBuild from './pages/Course/CourseBuild.js';
 import CourseEdit from './pages/Course/CourseEdit.js';
 import Courses from './pages/Course/Courses.js';
 import CourseView from './pages/Course/CourseView.js';
@@ -33,6 +34,7 @@ ReactDOM.render(
     <Route exact path='/firebase' component={Firebase}/>
     <Route path='/home' component={UserHome}/>
     <Route exact path='/newcourse' component={NewCourse}/>
+    <Route path='/build/' component={CourseBuild}/>
     <Route path='/editcourse/' component={CourseEdit}/>
     <Route exact path='/courses' component={Courses}/>
     <Route path='/course/' component={CourseView}/>

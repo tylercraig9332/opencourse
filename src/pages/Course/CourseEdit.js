@@ -62,7 +62,7 @@ class CourseEdit extends Component {
   }
 
   save() {
-    if (this.state.author != this.props.firebase.auth.currentUser.uid) {
+    if (this.state.author !== this.props.firebase.auth.currentUser.uid) {
       alert("you do not have permission to edit this course");
       window.location.href = 'courses/';
     }

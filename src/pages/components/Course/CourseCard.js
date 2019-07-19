@@ -5,10 +5,7 @@ import {
   CardBody,
   CardHeader,
   CardFooter,
-  CardSubtitle,
-  CardText,
   Tooltip,
-  Badge
 } from 'reactstrap';
 
 import {
@@ -18,7 +15,6 @@ import {
 import Tag from './Tag.js';
 import Icon from '../util/Icon.js';
 
-const ButtonGroup = Button.Group;
 
 export default class CourseCard extends Component {
 
@@ -75,14 +71,14 @@ export default class CourseCard extends Component {
 
     let tags = this.props.item.tags.map((tagName) => {
       return (
-        <Tag color="primary" value={tagName} />
+        <Tag key={tagName} color="primary" value={tagName} />
       )
     })
 
     // TODO: remove the edit for those who don't have access to editing it
     return(
       <div style={cardStyle}>
-        <Card style={cardDim}>
+        <Card style={cardDim} actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
         <CardHeader>
         <h5>{this.props.item.title}
         {authorEdit}
@@ -91,8 +87,8 @@ export default class CourseCard extends Component {
         </CardHeader>
         <CardBody>
           <h6>{this.props.item.description}</h6>
-
-          <p style={{position: 'absolute', bottom: 55}}><hr></hr>Tags: {tags}</p>
+          <hr></hr>
+          <p style={tag}>Tags: {tags}</p>
         </CardBody>
         <CardFooter>
           <Button onClick={this.viewCourse} type="primary" block>Preview</Button>
@@ -121,4 +117,9 @@ const favorite = {
 
 const icon = {
   float: 'right'
+}
+
+const tag = {
+  position: 'absolute',
+  bottom: 55
 }
