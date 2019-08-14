@@ -13,7 +13,7 @@ export default class Icon extends Component {
     }
     return (
       <span>
-        <Button onClick={this.props.action} type="normal" shape="circle" ><i  style={s} className={`fas fa-${this.props.type}`}></i></Button>
+        <Button id={this.props.id} onClick={this.props.action} type="normal" shape="circle" ><i  style={s} className={`fas fa-${this.props.type}`}></i></Button>
       </span>
     )
   }
