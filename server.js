@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 const logger = (req, res, next) => {
     //console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
