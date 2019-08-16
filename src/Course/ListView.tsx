@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import Card from './Card';
 
 export default function ListView() : ReactElement {
     
@@ -17,11 +18,14 @@ export default function ListView() : ReactElement {
 
         //setFavorite(isFavorite)
         //setCards(testCards)
+        fetch('course/all')
+        fetch('course/5')
     }, [])
 
     return (
         <div>
             {cards}
+            <Card></Card>
         </div>
     )
 }

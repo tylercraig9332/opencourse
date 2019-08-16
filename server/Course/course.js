@@ -1,18 +1,36 @@
 const express = require('express')
-const app = express();
+const router = express.Router();
 
-app.get('/course/:id', (req, res) =>  {
-    // return course based on req.params.id:
-})
+var course = require('./model')
 
-app.get('/course/all', (req, res) => {
+router.get('/all', (req, res) => {
     // Return all courses
+    /*module.list(10, req.query.pageToken, (err, entities, cursor) => {
+        if (err) {
+            next(err);
+            return;
+        }
+    })
+    console.log(entities)*/
+    //res.json()
+})
+.get('/new', (req, res) => {
+    course.create({"name": "The First Course", "description": "test"})
+})
+.get('/:id', (req, res) =>  {
+    // return course based on req.params.id:
+    console.log(req.params.id)
+    course.read(req.params.id)
 })
 
-app.post('/course/', (req, res) => {
+router.post('/', (req, res) => {
+    // TODO:
+    course.create({"description": "test", "tags": ['hello', 'goodbye']})
+    console.log("Posted")
+})
+
+router.delete('/:id', (req, res) => {
     // TODO:
 })
 
-app.delete('/course/:id', (req, res) => {
-    // TODO:
-})
+module.exports = router

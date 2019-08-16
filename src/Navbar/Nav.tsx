@@ -21,7 +21,7 @@ export default function Nav() {
               <a className="dropdown-item" href="#">Categories</a>
               <a className="dropdown-item" href="#">Tags</a>
               <a className="dropdown-item" href="/courses">Popular</a>
-              <a className="dropdown-item" href="/newcourse">Create course</a>
+              <a className="dropdown-item" href="/course/new">Create course</a>
             </div>
           </li>
         </ul>
