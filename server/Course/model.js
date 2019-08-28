@@ -6,7 +6,8 @@ function update(id, data) {
 }
 
 function create(data) {
-    db.any("INSERT INTO course VALUES ($1, $2)", [data.name, data.description])
+    db.any("INSERT INTO course(name, description) VALUES ($1, $2)", [data.name, data.description])
+    .then((data) => console.log(data))
 }
 
 function read(id) {
@@ -14,13 +15,30 @@ function read(id) {
     .then((data) => console.log(data))
 }
 
-function _delete(id) {
+async function list(limit) {
+    let d = [];
+    await db.any("SELECT * FROM course LIMIT $1", [limit])
+    .then((data) => {
+        //console.log(data)
+        //d.push(data)
+        d = data
+    })
+    .catch((reason) => {
+        console.log(reason)
+    })
+    //console.log("Post", d)
+    //console.log(d)
+    return d
+}
 
+function _delete(id) {
+    return db.any("DELETE FROM course where id=$1", id)
 }
 
 module.exports = {
     update: update,
     create: create,
     read: read,
+    list: list,
     delete: _delete
 }
