@@ -5,6 +5,8 @@ import Courses from './Course/ListView';
 import Home from './Home';
 import Nav from './Navbar/Nav';
 import Test from './Test';
+import Portal from './User/Portal';
+import SignUp from './User/SignUp';
 
 
 export default class Routes extends Component {
@@ -17,6 +19,8 @@ export default class Routes extends Component {
 						<Route exact path='/' component={Home}/>
 						<Route path='/test' component={Test}/>
 						<Route path='/courses/' component={Courses}/>
+						<Route path='/login/' component={Portal}/>
+						<Route path='/signup/' component={SignUp}/>
 				</Switch>
 			</div>
 		</BrowserRouter>

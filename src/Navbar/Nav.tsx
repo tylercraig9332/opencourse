@@ -4,7 +4,7 @@ export default function Nav() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         <img src="static/openhead.png" width="30" height="30" className="d-inline-block align-top" alt=" " style={{ marginRight: 10 }} />
         Opencourse
       </a>
@@ -18,9 +18,10 @@ export default function Nav() {
               Browse
         </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a className="dropdown-item" href="#">Categories</a>
-              <a className="dropdown-item" href="#">Tags</a>
-              <a className="dropdown-item" href="/courses">Popular</a>
+              <a className="dropdown-item" href="/courses/" >Featured </a>
+              <a className="dropdown-item" href="#">Categories <i className="fas fa-list"></i></a>
+              <a className="dropdown-item" href="#">Tags <i className="fas fa-tags"></i></a>
+              <a className="dropdown-item" href="/courses">Popular <i className="fas fa-fire"></i></a>
               <a className="dropdown-item" href="/course/new">Create course</a>
             </div>
           </li>

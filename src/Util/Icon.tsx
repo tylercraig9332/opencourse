@@ -12,7 +12,7 @@ export default function Icon(props : any) {
     }
     return (
       <span>
-        <Button className={s} id={'1'} onClick={props.action} type="default" shape="circle" ><i  className={'`fas fa-${props.type}`'}></i></Button>
+        <Button id={'1'} onClick={props.action} type="default" shape="circle" ><i  className={`fas fa-${props.type} ${s}`}></i></Button>
       </span>
     )
   

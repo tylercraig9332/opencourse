@@ -10,3 +10,12 @@ CREATE TABLE lesson (
 	type text NOT NULL,
 	data text
 );
+
+CREATE EXTENSION pgcrypto;
+
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	username text NOT NULL UNIQUE,
+	email text UNIQUE,
+	password text NOT NULL
+);

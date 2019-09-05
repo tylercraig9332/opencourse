@@ -13,7 +13,7 @@ router.get('/all/:limit?', (req, res) => {
 })
 .get('/:id', (req, res) =>  {
     // return course based on req.params.id:
-    //console.log(req.params.id)
+    // TODO: add handling of loading a course that doesn't exist. return a -1 and render a "doesn't exist" page.
     model.read(req.params.id).then(data => res.send(data))
 })
 
