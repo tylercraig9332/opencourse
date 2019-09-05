@@ -36,4 +36,12 @@ router.post('/user', (req, res) => {
     })
 })
 
+router.get('/logged', (req, res) => {
+    if (req.session == null) {
+        res.send('notlogged')
+    } else(
+        res.send(req.session.user + '')
+    ) 
+})
+
 module.exports = router

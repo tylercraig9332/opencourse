@@ -36,8 +36,8 @@ app.get('/api/getTest', (req, res) => {
 
 const allow = (req, res, next) => {
     if (req.session.user == undefined) {
-        res.redirect('/login/')
-        //console.log("user not defined")
+        //res.redirect('/login/')
+        console.log("user not defined")
     }
     else {
         console.log(req.session.user, 'user logged')

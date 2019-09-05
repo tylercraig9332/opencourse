@@ -2,6 +2,7 @@ import { Button, Col, Input, Row } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import formToJSON from '../Util/formToJSON';
+import Success from './Alerts/Success';
 
 export default function Portal(props: any) {
  
@@ -24,7 +25,7 @@ export default function Portal(props: any) {
       .then( res => {
            setSuccess(res.status == 200) 
            if (res.status == 200) {
-               window.setTimeout(() => fetch('/courses/'), 200)
+               window.location.href = '/courses/all'
            }
            else {
             // handle this res.
@@ -40,6 +41,7 @@ export default function Portal(props: any) {
             <Row>
               <Col span={6} offset={6}>
                 <h1 style={{color: 'dimgrey'}}>Sign In</h1>
+                <div>{success ? <Success /> : undefined}</div>
                 <form onSubmit={handleSubmit}>
                   <Input name="username" placeholder="username" size="large"/>
                   <Input.Password name="password" placeholder="password" style={formStyle} size="large" />
