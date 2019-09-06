@@ -5,6 +5,7 @@ import Courses from './Course/ListView';
 import Home from './Home';
 import Nav from './Navbar/Nav';
 import Test from './Test';
+import Logout from './User/Logout';
 import Portal from './User/Portal';
 import SignUp from './User/SignUp';
 
@@ -21,6 +22,7 @@ export default class Routes extends Component {
 						<Route path='/courses/all' component={Courses}/>
 						<Route path='/login/' component={Portal}/>
 						<Route path='/signup/' component={SignUp}/>
+						<Route path='/logout/' component={Logout}/>
 				</Switch>
 			</div>
 		</BrowserRouter>

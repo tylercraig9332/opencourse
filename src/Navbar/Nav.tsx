@@ -45,7 +45,7 @@ export default function Nav() {
                 <img style={{marginTop: '25%'}}src="/static/openhead.png" width="30" height="30" className="d-inline-block align-top" alt=" " />
             </Menu.Item>
             <Menu.Item onClick={() => redirect('/')}>
-                Opencourse
+                <strong>Opencourse</strong>
             </Menu.Item>
             <SubMenu title={
                 <span className="submenu-title-wrapper" onClick={() => redirect('/courses/all')}>Courses</span>

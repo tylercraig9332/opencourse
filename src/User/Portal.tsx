@@ -1,4 +1,4 @@
-import { Button, Col, Input, Row } from 'antd';
+import { Button, Col, Input, message, Row } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import formToJSON from '../Util/formToJSON';
@@ -29,6 +29,8 @@ export default function Portal(props: any) {
            }
            else {
             // handle this res.
+            message.error("Something went wrong.")
+            message.info("Please check your username and password and try again")
            }
         })
       .catch(error=>console.error(error))

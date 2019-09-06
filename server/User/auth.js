@@ -8,9 +8,9 @@ var user = require('./model')
 
 // auth logout
 router.get('/logout', (req, res) => {
-    req.logout()
-    req.session = null
-    res.redirect("/")
+    console.log("logging user out")
+    req.session.user = null
+    res.sendStatus(200)
 })
 
 router.get('/google', (req, res) => {
@@ -28,7 +28,10 @@ router.post('/user', (req, res) => {
     user.get(req.body.username, req.body.password).then(id => {
         console.log("loggin in as user ", id)
         req.session.user = id;
-        res.sendStatus(200)
+        if (typeof(id) != "number")
+            res.sendStatus(404)
+        else
+            res.sendStatus(200)
     })
     .catch(error => {
         console.error(error)
