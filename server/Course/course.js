@@ -19,7 +19,7 @@ router.get('/all/:limit?', (req, res) => {
 
 router.post('/', (req, res) => {
     // TODO: pull data from request
-    model.create({"name" : "A Post Test", "description": "test"})
+    model.create({"name" : req.body.title, "description": req.body.description})
     .then(id => res.send(id))
 })
 

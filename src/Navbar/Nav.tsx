@@ -10,7 +10,11 @@ export default function Nav() {
         fetch('/auth/logged').then((res) => res.json())
         .then((r) => {
             console.log(r)
-            setLogged(true)
+            let l = true
+            if (r == null) {
+                l = false
+            }
+            setLogged(l)
             setId(r)
         })
         .catch((err) => console.log("user is not logged in or an error has occured", err))
@@ -25,10 +29,10 @@ export default function Nav() {
         <SubMenu title={
             <span className="submenu-title-wrapper" onClick={() => redirect(`/profile`)}><i className="fas fa-user"></i> Account</span>
         } style={right}>
-            <Menu.Item onClick={() => redirect('/logout')}>
+            <Menu.Item onClick={() => redirect('/profile')}>
                 <Icon type="user" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/> Profile 
             </Menu.Item>
-            <Menu.Item onClick={() => redirect('/logout')}>
+            <Menu.Item onClick={() => redirect('/settings')}>
                 <Icon type="setting" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/> Settings 
             </Menu.Item>
             <Menu.Divider/>
@@ -57,7 +61,9 @@ export default function Nav() {
                     <Menu.Item key="tags"><i className="fas fa-tags"></i> By Tags</Menu.Item>
                 </Menu.ItemGroup>
                 <Menu.Divider/>
-                    <Menu.Item key="create">Create New Course <i className="fas fa-plus-circle"></i></Menu.Item>
+                    <Menu.Item key="create" onClick={() => redirect('/build')}>
+                        Create New Course <i className="fas fa-plus-circle"></i>
+                    </Menu.Item>
             </SubMenu>
             {logged ? 
             (account) :

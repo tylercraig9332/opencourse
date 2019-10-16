@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import CourseBuild from './Course/Build/Build';
 import Courses from './Course/ListView';
 // Add component imports here 
 import Home from './Home';
@@ -23,6 +24,7 @@ export default class Routes extends Component {
 						<Route path='/login/' component={Portal}/>
 						<Route path='/signup/' component={SignUp}/>
 						<Route path='/logout/' component={Logout}/>
+						<Route path='/build/' component={CourseBuild}/>
 				</Switch>
 			</div>
 		</BrowserRouter>
