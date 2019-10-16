@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import CourseBuild from './Course/Build/Build';
 import Courses from './Course/ListView';
 // Add component imports here 
 import Home from './Home';
+import LessonBuild from './Lesson/Build/Build';
 import Nav from './Navbar/Nav';
-import Test from './Test';
+import About from './Page/About';
+import Contribute from './Page/Contribute';
+import Test from './Page/Test';
 import Logout from './User/Logout';
 import Portal from './User/Portal';
 import SignUp from './User/SignUp';
@@ -24,7 +26,9 @@ export default class Routes extends Component {
 						<Route path='/login/' component={Portal}/>
 						<Route path='/signup/' component={SignUp}/>
 						<Route path='/logout/' component={Logout}/>
-						<Route path='/build/' component={CourseBuild}/>
+						<Route path='/build/' component={LessonBuild}/>
+						<Route path="/contrib/" component={Contribute}/>
+						<Route path='/about/' component={About} />
 				</Switch>
 			</div>
 		</BrowserRouter>

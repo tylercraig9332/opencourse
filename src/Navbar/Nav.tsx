@@ -61,8 +61,8 @@ export default function Nav() {
                     <Menu.Item key="tags"><i className="fas fa-tags"></i> By Tags</Menu.Item>
                 </Menu.ItemGroup>
                 <Menu.Divider/>
-                    <Menu.Item key="create" onClick={() => redirect('/build')}>
-                        Create New Course <i className="fas fa-plus-circle"></i>
+                    <Menu.Item key="create" onClick={() => redirect('/contrib')}>
+                        Contribute <i className="fas fa-plus-circle"></i>
                     </Menu.Item>
             </SubMenu>
             {logged ? 
