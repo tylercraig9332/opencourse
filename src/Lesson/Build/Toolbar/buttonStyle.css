@@ -1,0 +1,26 @@
+button.toolbar {
+    background: #fbfbfb;
+    color: #888;
+    font-size: 18px;
+    border: 0;
+    padding-top: 0px;
+    vertical-align: bottom;
+    height: 34px;
+    width: 36px;
+  }
+  
+  button.toolbar:hover, button.toolbar:focus {
+    background: #f3f3f3;
+    outline: 0; /* reset for :focus */
+  }
+  
+  i {
+    fill: #888;
+  }
+  
+  .drop
+  {
+    width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+  }

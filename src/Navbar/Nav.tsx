@@ -45,7 +45,7 @@ export default function Nav() {
     return (
         <div>
         <Menu mode="horizontal">
-            <Menu.Item onClick={() => redirect('/')}>
+            <Menu.Item onClick={() => redirect('/about')}>
                 <img style={{marginTop: '25%'}}src="/static/openhead.png" width="30" height="30" className="d-inline-block align-top" alt=" " />
             </Menu.Item>
             <Menu.Item onClick={() => redirect('/')}>
@@ -62,15 +62,33 @@ export default function Nav() {
                 </Menu.ItemGroup>
                 <Menu.Divider/>
                     <Menu.Item key="create" onClick={() => redirect('/contrib')}>
-                        Contribute <i className="fas fa-plus-circle"></i>
+                        Create Course <i className="fas fa-plus-circle"></i>
                     </Menu.Item>
             </SubMenu>
+            <SubMenu title={
+                <span className="submenu-title-wrapper" onClick={() => redirect('/lessons/all')}>Lessons</span>
+            } >
+                <Menu.ItemGroup title="Browse">
+                    <Menu.Item key="all" onClick={() => redirect('/courses/all')}><i className="fas fa-archive"></i> All</Menu.Item>
+                    <Menu.Item key="popular"><i className="far fa-gem"></i> Popular</Menu.Item>
+                    <Menu.Item key="new"><i className="far fa-lightbulb"></i> New</Menu.Item>
+                </Menu.ItemGroup>
+                <Menu.Divider/>
+                    <Menu.Item key="create" onClick={() => redirect('/build')}>
+                        Create Lesson <i className="fas fa-plus-circle"></i>
+                    </Menu.Item>
+            </SubMenu>
+            
             {logged ? 
             (account) :
             (<Menu.Item style={right} onClick={() => redirect('/login')}>
                 Log In
-            </Menu.Item>)
+            </Menu.Item>
+            )
             }
+            <Menu.Item style={{float: 'right'}} onClick={() => redirect('/contrib')}>
+                  Contribute
+            </Menu.Item>
         </Menu>
         </div>
     )
