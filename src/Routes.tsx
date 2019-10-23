@@ -4,6 +4,7 @@ import Courses from './Course/ListView';
 // Add component imports here 
 import Home from './Home';
 import LessonBuild from './Lesson/Build/Build';
+import CourseBuild from './Course/Build/Build';
 import Nav from './Navbar/Nav';
 import About from './Page/About';
 import Contribute from './Page/Contribute';
@@ -26,8 +27,9 @@ export default class Routes extends Component {
 						<Route path='/login/' component={Portal}/>
 						<Route path='/signup/' component={SignUp}/>
 						<Route path='/logout/' component={Logout}/>
-						<Route path='/build/' component={LessonBuild}/>
-						<Route path="/contrib/" component={Contribute}/>
+						<Route path='/lessons/build/' component={LessonBuild}/>
+						<Route path='/courses/build/' component={CourseBuild}/>
+						<Route path='/contrib/' component={Contribute}/>
 						<Route path='/about/' component={About} />
 				</Switch>
 			</div>
