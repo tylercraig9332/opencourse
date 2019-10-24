@@ -6,7 +6,7 @@ CREATE TABLE course (
 
 CREATE TABLE lesson (
 	id serial PRIMARY KEY,
-	courseID integer REFERENCES course,
+	courseID integer,
 	type text NOT NULL,
 	data text
 );
