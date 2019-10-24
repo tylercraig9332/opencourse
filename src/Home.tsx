@@ -10,8 +10,11 @@ const App: React.FC = () => {
   useEffect(() => {
     fetch('auth/logged').then(res => res.json())
     .then((id) => {
-      console.log(id)
       setLogged(typeof(id) == 'number')
+      setLoaded(true)
+    })
+    .catch((e) => {
+      console.error(e)
       setLoaded(true)
     })
   }, [])

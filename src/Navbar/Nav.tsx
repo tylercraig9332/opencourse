@@ -1,6 +1,6 @@
 import { Icon, Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
-const { SubMenu } = Menu
+const { SubMenu, Item, Divider, ItemGroup } = Menu
 export default function Nav() {
 
     const [logged, setLogged] = useState<Boolean>(false)
@@ -17,8 +17,12 @@ export default function Nav() {
             setLogged(l)
             setId(r)
         })
-        .catch((err) => console.log("user is not logged in or an error has occured", err))
-        //setLogged(log)
+        .catch((err) => {
+            console.log("user is not logged in or an error has occured", err)
+            if (window.location.pathname != '/login' && window.location.pathname != '/') {
+                window.location.href = "/login"
+            }
+        })
     }, [])
     
     function redirect(path: string) : void {
@@ -29,66 +33,66 @@ export default function Nav() {
         <SubMenu title={
             <span className="submenu-title-wrapper" onClick={() => redirect(`/profile`)}><i className="fas fa-user"></i> Account</span>
         } style={right}>
-            <Menu.Item onClick={() => redirect('/profile/' + id)}>
+            <Item onClick={() => redirect('/profile/' + id)}>
                 <Icon type="user" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/> Profile 
-            </Menu.Item>
-            <Menu.Item onClick={() => redirect('/settings')}>
+            </Item>
+            <Item onClick={() => redirect('/settings')}>
                 <Icon type="setting" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/> Settings 
-            </Menu.Item>
-            <Menu.Divider/>
-            <Menu.Item onClick={() => redirect('/logout')}>
+            </Item>
+            <Divider/>
+            <Item onClick={() => redirect('/logout')}>
                 Logout <Icon type="logout" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/>
-            </Menu.Item>
+            </Item>
         </SubMenu>
     )
 
     return (
         <div>
         <Menu mode="horizontal">
-            <Menu.Item onClick={() => redirect('/about')}>
+            <Item onClick={() => redirect('/about')}>
                 <img style={{marginTop: '25%'}} src="/static/openhead.png" width="30" height="30" className="d-inline-block align-top" alt=" " />
-            </Menu.Item>
-            <Menu.Item onClick={() => redirect('/')}>
+            </Item>
+            <Item onClick={() => redirect('/')}>
                 <strong>Opencourse</strong>
-            </Menu.Item>
+            </Item>
             <SubMenu title={
                 <span className="submenu-title-wrapper" onClick={() => redirect('/courses/all')}>Courses</span>
             } >
-                <Menu.ItemGroup title="Browse">
-                    <Menu.Item key="all" onClick={() => redirect('/courses/all')}><i className="fas fa-archive"></i> All</Menu.Item>
-                    <Menu.Item key="popular" onClick={() => redirect('/courses/popular')}><i className="far fa-gem"></i> Popular</Menu.Item>
-                    <Menu.Item key="new" onClick={() => redirect('/courses/new')}><i className="far fa-lightbulb"></i> New</Menu.Item>
-                    <Menu.Item key="tags" onClick={() => redirect('/courses/tags/')}><i className="fas fa-tags"></i> By Tags</Menu.Item>
-                </Menu.ItemGroup>
-                <Menu.Divider/>
-                    <Menu.Item key="create" onClick={() => redirect('/courses/build/')}>
+                <ItemGroup title="Browse">
+                    <Item key="all" onClick={() => redirect('/courses/all')}><i className="fas fa-archive"></i> All</Item>
+                    <Item key="popular" onClick={() => redirect('/courses/popular')}><i className="far fa-gem"></i> Popular</Item>
+                    <Item key="new" onClick={() => redirect('/courses/new')}><i className="far fa-lightbulb"></i> New</Item>
+                    <Item key="tags" onClick={() => redirect('/courses/tags/')}><i className="fas fa-tags"></i> By Tags</Item>
+                </ItemGroup>
+                <Divider/>
+                    <Item key="create" onClick={() => redirect('/courses/build/')}>
                         Create Course <i className="fas fa-plus-circle"></i>
-                    </Menu.Item>
+                    </Item>
             </SubMenu>
             <SubMenu title={
                 <span className="submenu-title-wrapper" onClick={() => redirect('/lessons/all')}>Lessons</span>
             } >
-                <Menu.ItemGroup title="Browse">
-                    <Menu.Item key="all" onClick={() => redirect('/lessons/all')}><i className="fas fa-archive"></i> All</Menu.Item>
-                    <Menu.Item key="popular" onClick={() => redirect('/lessons/popular')}><i className="far fa-gem"></i> Popular</Menu.Item>
-                    <Menu.Item key="new" onClick={() => redirect('/lessons/new')}><i className="far fa-lightbulb"></i> New</Menu.Item>
-                </Menu.ItemGroup>
-                <Menu.Divider/>
-                    <Menu.Item key="create" onClick={() => redirect('/lessons/build/')}>
+                <ItemGroup title="Browse">
+                    <Item key="all" onClick={() => redirect('/lessons/all')}><i className="fas fa-archive"></i> All</Item>
+                    <Item key="popular" onClick={() => redirect('/lessons/popular')}><i className="far fa-gem"></i> Popular</Item>
+                    <Item key="new" onClick={() => redirect('/lessons/new')}><i className="far fa-lightbulb"></i> New</Item>
+                </ItemGroup>
+                <Divider/>
+                    <Item key="create" onClick={() => redirect('/lessons/build/')}>
                         Create Lesson <i className="fas fa-plus-circle"></i>
-                    </Menu.Item>
+                    </Item>
             </SubMenu>
             
             {logged ? 
             (account) :
-            (<Menu.Item style={right} onClick={() => redirect('/login')}>
+            (<Item style={right} onClick={() => redirect('/login')}>
                 Log In
-            </Menu.Item>
+            </Item>
             )
             }
-            <Menu.Item style={{float: 'right'}} onClick={() => redirect('/contrib')}>
+            <Item style={{float: 'right'}} onClick={() => redirect('/contrib')}>
                   Contribute
-            </Menu.Item>
+            </Item>
         </Menu>
         </div>
     )

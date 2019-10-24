@@ -8,6 +8,8 @@ import {
     message
 } from 'antd'
 
+const { TextArea } = Input
+
 export default function Details(props : any) {
     const [editView, setEditView] = useState<boolean>(true)
 
@@ -31,14 +33,14 @@ export default function Details(props : any) {
             <br></br>
             <Row ><Col span={3}>Course Name:</Col><Col span={12}><Input size="large" value={courseName} onChange={(e) => props.setName(e.currentTarget.value)} /></Col></Row>
             <br></br>
-            <Row ><Col span={3}>Course Description:</Col><Col span={12}> <Input.TextArea rows={1} value={courseDesc} onChange={(e) => props.setDesc(e.currentTarget.value)}/></Col></Row>
+            <Row ><Col span={3}>Course Description:</Col><Col span={12}> <TextArea autoSize={{minRows: 2, maxRows: 6}} value={courseDesc} onChange={(e) => props.setDesc(e.currentTarget.value)}/></Col></Row>
             <br></br>
             <Row><Col span={3}></Col><Col span={12}><Button type="default" onClick={() => setEditView(false)} block>Save Details</Button></Col></Row>
         </React.Fragment>
     ) :
     (
         <React.Fragment>
-            <h3>Details</h3>
+            <h3 className='dg '>Details</h3>
             <br></br>
             <Row ><Col span={3}>Course Name:</Col><Col span={12}><h4 className="dg">{courseName}</h4></Col></Row>
             <br></br>
