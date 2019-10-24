@@ -4,13 +4,10 @@ const router = express.Router();
 var model = require('./model')
 
 router.post('/', (req, res) => {
-    // TODO: pull data from request
-    console.log(req.body)
     model.create({"courseID" : req.body.courseID, "type": req.body.type, "data": req.body.data})
     .then(id => res.send(id))
 })
 .post('/update', (req, res) => {
-    console.log(req.body)
     model.update(req.body.id, req.body.data)
     .then(data=>res.send(data))
 })
@@ -24,8 +21,8 @@ router.get('/all/:limit?', (req, res) => {
     model.list(limit).then(r => res.send(r))
 })
 .get('/:id', (req, res) =>  {
-    // return course based on req.params.id:
-    // TODO: add handling of loading a course that doesn't exist. return a -1 and render a "doesn't exist" page.
+    // return lesson based on req.params.id:
+    // TODO: add handling of loading a lesson that doesn't exist. return a -1 and render a "doesn't exist" page.
     model.read(req.params.id).then(data => res.send(data))
 })
 router.delete('/:id', (req, res) => {
