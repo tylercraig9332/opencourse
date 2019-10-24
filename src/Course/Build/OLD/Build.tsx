@@ -1,7 +1,7 @@
 import { Button, message, Steps } from 'antd'
 import React, { useState } from 'react'
+import CourseBuild from './CourseBuild'
 import Details from './Details'
-import LessonBuild from './LessonBuild'
 import Publish from './Publish'
 
 const {Step} = Steps
@@ -13,10 +13,10 @@ export default function Build() {
 
     function next() {
         let next = current + 1
-        //Uncomment when ready for form validation
-        /*if (current === 0) {
-            const t = localStorage.getItem('lessonTitle')
-            const d = localStorage.getItem('lessonDescription')
+        /* Uncomment when ready for form validation
+        if (current === 0) {
+            const t = localStorage.getItem('courseTitle')
+            const d = localStorage.getItem('courseDescription')
             if (t == null || t.length === 0) {
                 message.warning("Please enter a title")
                 next = 0
@@ -25,7 +25,7 @@ export default function Build() {
                 message.warning("Please add a description")
                 next = 0
             }
-        }*/
+        } */
         setCurrent(next)
     }
 
@@ -49,7 +49,7 @@ export default function Build() {
                 },
                 method: "POST"
         }
-        fetch('/lesson/', initData).then(res => res.json())
+        fetch('/course/', initData).then(res => res.json())
         .then((id) => {setId(id); console.log(id)})
         .catch(error => console.error(error))
     }
@@ -57,14 +57,14 @@ export default function Build() {
 
     const steps = [
         {
-            title: 'Lesson Details',
+            title: 'Course Details',
             id: 'course',
             content: <Details onUnmount={saveDetails}/>,
         },
         {
             title: 'Lesson Builder',
             id: 'lesson',
-            content: <LessonBuild />
+            content: <CourseBuild />
         },
         {
             title: 'Review & Publish',
@@ -90,7 +90,7 @@ export default function Build() {
             <hr></hr>
              </div>
              <div className="steps-content">{steps[current].content}</div>
-             <div className="steps-action" style={{float: 'right', marginLeft: '3rem', marginTop: 10, marginBottom: 10}}>
+             <div className="steps-action" style={{float: 'right', marginLeft: '3rem'}}>
                 {current > 0 && (
                     <Button onClick={() => setCurrent(current - 1)}>
                     Previous
