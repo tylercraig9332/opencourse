@@ -29,20 +29,16 @@ async function list(limit) {
     let d = [];
     await db.any("SELECT * FROM lesson LIMIT $1", [limit])
     .then((data) => {
-        //console.log(data)
-        //d.push(data)
         d = data
     })
     .catch((reason) => {
         console.log(reason)
     })
-    //console.log("Post", d)
-    //console.log(d)
     return d
 }
 
 function _delete(id) {
-    return db.one("DELETE FROM course where id=$1", id)
+    return db.one("DELETE FROM lesson where id=$1", id)
 }
 
 module.exports = {
