@@ -11,7 +11,7 @@ async function update(id, data) {
 
 async function create(dataa) {
     let id;
-    await db.one("INSERT INTO lesson(courseID, type, data) VALUES ($1, $2, $3) RETURNING id", [dataa.courseID, dataa.type, dataa.data])
+    await db.one("INSERT INTO lesson(chapterId, type, data) VALUES ($1, $2, $3) RETURNING id", [data.chapterId, dataa.type, dataa.data])
     .then((dataa) => {
         id = dataa
     })
