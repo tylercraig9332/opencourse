@@ -11,7 +11,7 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.5",
     "@types/react-router-dom": "^4.3.4",
-    "antd": "^3.21.4",
+    "antd": "^3.24.2",
     "body-parser": "^1.19.0",
     "draft-js": "^0.11.1",
     "express": "^4.17.1",
