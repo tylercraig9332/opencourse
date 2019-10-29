@@ -30,6 +30,7 @@ export default function Details(props : any) {
     const detailsHeader = (editView) ? (
         <React.Fragment>
             <h3 className="dg">Details</h3>
+            <hr style={{width: '7%', marginLeft: 0}}></hr>
             <br></br>
             <Row ><Col span={3}>Course Name:</Col><Col span={12}><Input size="large" value={courseName} onChange={(e) => props.setName(e.currentTarget.value)} /></Col></Row>
             <br></br>
@@ -41,10 +42,11 @@ export default function Details(props : any) {
     (
         <React.Fragment>
             <h3 className='dg '>Details</h3>
+            <hr style={{width: '7%', marginLeft: 0}}></hr>
             <br></br>
-            <Row ><Col span={3}>Course Name:</Col><Col span={12}><h4 className="dg">{courseName}</h4></Col></Row>
+            <Row ><Col span={12}><h4 className="dg">{courseName}</h4></Col></Row>
             <br></br>
-            <Row ><Col span={3}>Course Description:</Col><Col span={12}><p>{courseDesc}</p></Col></Row>
+            <Row ><Col span={12}><p>{courseDesc}</p></Col></Row>
             <br></br>
             <Row><Col span={3}></Col><Col span={12}><Button type="default" onClick={() => setEditView(true)} block>Edit Details</Button></Col></Row>
         </React.Fragment>
