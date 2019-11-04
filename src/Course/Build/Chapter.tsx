@@ -84,9 +84,11 @@ export default function Chapter(props : ChapterProps) {
             <p>{description}</p>
 
             {/* LESSONS MAP HERE */}
-            <Tippy content={<div>Add Lesson</div>} arrow={true}>
-                <span><Button block style={{width: 400}} onClick={addLesson}><i className="fas fa-plus"></i></Button></span>
-            </Tippy>
+            <div className="addLesson">
+                <Tippy content={<div>Add Lesson</div>} arrow={true}>
+                    <span><Button block onClick={addLesson}><i className="fas fa-plus"></i></Button></span>
+                </Tippy>
+            </div>
             <hr style={{width: 100}}></hr>
         </div>
     )
