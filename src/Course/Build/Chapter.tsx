@@ -4,7 +4,7 @@ import './build.css'
 
 import Tippy from '@tippy.js/react'
 
-import { Button, Modal, Input } from 'antd'
+import { Button, Modal, Input, notification } from 'antd'
 const {TextArea} = Input
 
 type ChapterProps = {
@@ -27,7 +27,8 @@ export default function Chapter(props : ChapterProps) {
     }
 
     function addLesson() : void {
-        let l = [...lessons]
+        /** Need to build Lesson View */
+        /*let l = [...lessons]
         const num = l.length
         l.push({
             name: 'Lesson ' + num,
@@ -35,7 +36,11 @@ export default function Chapter(props : ChapterProps) {
             type: '',
             data: {}
         })
-        updateChapter(name, description, l)
+        updateChapter(name, description, l)*/
+        notification['warning']({
+            message: "This will redirect to lessons/build, but for now it does nothing since I haven't implemented the back-end for this yet",
+        })
+        //window.location.href = '/lessons/build/'
     } 
 
     function editChapter(event : any) : void {
