@@ -1,5 +1,5 @@
-import { Icon, Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Icon, Menu, message } from 'antd';
 const { SubMenu, Item, Divider, ItemGroup } = Menu
 export default function Nav() {
 
@@ -20,7 +20,8 @@ export default function Nav() {
         .catch((err) => {
             console.log("user is not logged in or an error has occured", err)
             if (window.location.pathname != '/login' && window.location.pathname != '/') {
-                window.location.href = "/login"
+                message.warning("You need to be logged in to use this feature.")
+                window.setTimeout(() => window.location.href = "/login", 500)
             }
         })
     }, [])
