@@ -1,7 +1,7 @@
 export interface IChapter {
     name: string,
     description: string,
-    lessons: Lesson[],
+    lessons: ILesson[],
     key?: number | string
 }
 
