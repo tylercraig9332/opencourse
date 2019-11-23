@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { saveDetails, updateDetails } from '../../api/course'
+
 import {
     Input,
     Row,
@@ -17,11 +19,25 @@ export default function Details(props : any) {
 
     useEffect(() => {
         let errorFlip = editView
-        // On change to show, ensure that courseName and courseDesc are not empty.
+        // On change to show
         if (!editView) {
+            // ensure that courseName and courseDesc are not empty.
             if (courseName === '' || courseDesc === '') {
                 message.info('Please ensure that course name and course description are not empty.')
                 errorFlip = !editView
+            }
+            // save 
+            if (!errorFlip) {
+                if (props.id === -1) {
+                    //make a call to save.
+                    saveDetails(courseName, courseDesc).then((id) => {
+                        console.log(id)
+                        props.setId(id)
+                    })
+                }
+                else {
+                    updateDetails(props.id, courseName, courseDesc)
+                }
             }
         }
         setEditView(errorFlip)

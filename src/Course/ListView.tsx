@@ -1,9 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import CardConnor from './CardConnor';
+import { CourseListProps } from '../@types/Props'
 
-export default function ListView() : ReactElement {
+import { notification } from 'antd'
+
+import LoadSpin from '../Util/LoadSpin'
+
+export default function ListView(props : CourseListProps) : ReactElement {
     
     const [cards, setCards] = useState<Object[] | null>(null)
+    const [loaded, setLoaded] = useState<boolean>(false)
 
     //const [favorite, setFavorite] = useState(false)
     useEffect(() => {
@@ -12,29 +17,28 @@ export default function ListView() : ReactElement {
 
         //setFavorite(isFavorite)
         //setCards(testCards)
-        fetch('course/all').then((prom) => prom.json())
+        fetch(props.fetchString).then((prom) => prom.json())
         .then((data : Object[]) => {
             setCards(data)
+            setLoaded(true)
         })
         .catch(() => {
             console.log("error")
+            setLoaded(true)
         })
     }, [])
 
-    let cardRender: JSX.Element[] = new Array()
-    cardRender.push((<div key={-1}>No cards</div>))
-    if (cards != null) {
-        cardRender.pop()
-        cardRender = cards.map((card : any) => {
-            return <CardConnor name={card.name} description={card.description} />
-        })
-    }
-    
-    
 
+if (cards == undefined && !loaded) return <LoadSpin message="Loading courses..."/>
+if (cards == undefined && loaded) notification.error({message: 'An Error has occured with loading courses', description: 'This may be due to none existing'})
     return (
-        <div>
-            {cardRender}
+        <div style={cardsContainer}>
+            <p>No cards here</p>
         </div>
     )
+}
+
+const cardsContainer = {
+    display: 'flex',
+    padding: 10
 }

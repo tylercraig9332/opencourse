@@ -1,7 +1,7 @@
 const db =  require('../Postgres/db');
 
 function update(id, data) {
-
+    db.one("UPDATE course SET name=$1, description=$2 where id=$3", [data.name, data.description, id])
 }
 
 async function create(data) {
@@ -40,10 +40,21 @@ function _delete(id) {
     return db.one("DELETE FROM course where id=$1", id)
 }
 
+async function exists(id) {
+    let e = false
+    await db.one("SELECT COUNT(*) from course where id=$1", id).then((c) => {
+        if (c === 1) {
+            e = true
+        }
+    })
+    return e
+}
+
 module.exports = {
     update: update,
     create: create,
     read: read,
     list: list,
-    delete: _delete
+    delete: _delete,
+    exists: exists
 }

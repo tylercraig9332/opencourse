@@ -12,6 +12,7 @@ export default function Build() {
 
     const [courseName, setCourseName] = useState<string>('')
     const [courseDesc, setCourseDesc] = useState<string>('')
+    const [courseId, setCourseId] = useState<number>(-1)
 
     const [chapters, setChapters] = useState<IChapter[]>([{
         name: 'Chapter 1',
@@ -51,9 +52,11 @@ export default function Build() {
     
     return (
         <div className="container">
-            <h1 className="dg">Create New Course</h1>
+            <h1 className="dg">Create New Course - {courseId}</h1>
             <hr></hr>
-            <Details courseName={courseName} courseDesc={courseDesc} setName={(val : string) => setCourseName(val)} setDesc={(val : string) => setCourseDesc(val)}/>
+            <Details courseName={courseName} courseDesc={courseDesc} 
+                    setName={(val : string) => setCourseName(val)} setDesc={(val : string) => setCourseDesc(val)} 
+                    id={courseId} setId={(id : number) => setCourseId(id)}/>
             <hr></hr>
             {/* TODO: Put this in it's own chapter... */}
             <h3 className="dg">Chapters</h3>
