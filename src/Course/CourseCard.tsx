@@ -3,16 +3,23 @@ import { Card } from 'antd'
 
 const { Meta } = Card
 
-type CardProps = {title: string, description: string, url: string}
+type CardProps = {title: string, description: string, url?: string}
 
 export default function CourseCard(props: CardProps) {
   return (
     <Card 
       hoverable 
-      style={{ width: 300 }}
-      cover={<img alt={props.title} src={props.url}/>}>
+      style={cardStyle}
+      cover={<img alt={props.title} style={{maxWidth: '100%', height: '300px'}} src={'https://images.freeimages.com/images/large-previews/e1b/textures-3-1195806.jpg'}/>}>
         <Meta title={props.title} description={props.description} />
     </Card>
   )
-  
 }
+
+
+const cardStyle = {
+  width: 250,
+  maxHeight: 500,
+  //border: '1px solid blue',
+  margin: 20
+} as React.CSSProperties
