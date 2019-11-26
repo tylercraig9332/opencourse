@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
+import { needLogin } from '../Util/auth'
+
 import { Icon, Menu, message } from 'antd';
 const { SubMenu, Item, Divider, ItemGroup } = Menu
 export default function Nav() {
@@ -9,7 +12,9 @@ export default function Nav() {
     useEffect(() => {
         fetch('/auth/logged').then((res) => res.json())
         .then((r) => {
-            console.log(r)
+            if (r == null) {
+                evauluateLogin()
+            }
             let l = true
             if (r == null) {
                 l = false
@@ -19,12 +24,18 @@ export default function Nav() {
         })
         .catch((err) => {
             console.log("user is not logged in or an error has occured", err)
-            if (window.location.pathname != '/login' && window.location.pathname != '/') {
-                message.warning("You need to be logged in to use this feature.")
-                window.setTimeout(() => window.location.href = "/login", 500)
-            }
+            evauluateLogin()
         })
     }, [])
+
+    function evauluateLogin() {
+        const locs = window.location.href.split('/')
+        if (needLogin(locs)) {
+            message.warning("You need to be logged in to use this feature.")
+            window.setTimeout(() => window.location.href = "/login", 500)
+
+        }
+    }
     
     function redirect(path: string) : void {
         window.location.href = path

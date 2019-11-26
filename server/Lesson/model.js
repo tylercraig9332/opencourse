@@ -2,18 +2,18 @@ const db =  require('../Postgres/db');
 
 async function update(id, data) {
     let u;
-    await db.one("UPDATE lesson SET l_data=$1 WHERE id=$2 RETURNING l_data", [data, id])
+    await db.one("UPDATE lesson SET name=$1, description=$2, type=$3, l_data=$4 WHERE id=$5 RETURNING id", [data.name, data.description, data.type, data.l_data, id])
     .then((data) => {
         u = data
     })
     return u;
 }
 
-async function create(dataa) {
+async function create(data) {
     let id;
-    await db.one("INSERT INTO lesson(chapterId, type, l_data) VALUES ($1, $2, $3) RETURNING id", [data.chapterId, dataa.type, dataa.data])
-    .then((dataa) => {
-        id = dataa
+    await db.one("INSERT INTO lesson(name, description, type, l_data, author) VALUES ($1, $2, $3, $4, $5) RETURNING id", [data.name, data.description, data.type, data.data, data.author])
+    .then((data) => {
+        id = data
     })
     return id
 }
@@ -41,10 +41,21 @@ function _delete(id) {
     return db.one("DELETE FROM lesson where id=$1", id)
 }
 
+async function exists(id) {
+    let e = false
+    await db.one("SELECT COUNT(*) from lesson where id=$1", id).then((c) => {
+        if (c === 1) {
+            e = true
+        }
+    })
+    return e
+}
+
 module.exports = {
     update: update,
     create: create,
     read: read,
     list: list,
-    delete: _delete
+    delete: _delete,
+    exists: exists
 }

@@ -29,8 +29,6 @@ export default function Build() {
             setCourseDesc(data.description)
         })
         fetchChapters(windowID).then((cdata: any) => {
-            console.log("Recieved on React")
-            console.log(cdata)
             if (cdata.length < 1) cdata = initChapters
             setChapters(cdata)
         })

@@ -1,22 +1,64 @@
 import { Button, message, Steps } from 'antd'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Details from './Details'
 import LessonBuild from './LessonBuild'
 import Publish from './Publish'
 
-const {Step} = Steps
+import { ILesson } from '../../@types/Interface'
+import { initLesson, saveLesson, loadLesson } from '../../api/lesson'
 
-export default function Build() {
+const { Step } = Steps
+
+export default function BuildWrap() {
+
+    const [lesson, setLesson] = useState<ILesson>(initLesson)
+    const [id, setId] = useState<number>(-1) // This state is kind of useless since lesson will have the same property but this was added before I moved lesson up
 
     const [current, setCurrent] = useState<number>(0)
-    const [id, setId] = useState<number>(-1)
+
+    useEffect(() => {
+        // TODO: Load init data on Lessons.
+        // Also can pull id from url
+        let windowID = Number(window.location.href.split('/')[5])
+        if (windowID === 0 || Number.isNaN(windowID)) {
+            windowID = -1
+        }
+        setId(windowID)
+        loadLesson(windowID).then(l => {
+            if (l == undefined) l = initLesson
+            setLesson(l)
+            setId(Number(l.id))
+        })
+    }, [])
+
+    useEffect(() => {
+        // use this windowId if there is an inital load
+        let windowID = Number(window.location.href.split('/')[5])
+        if (id !== -1) {
+            windowID = id
+        } else if (windowID === 0 || Number.isNaN(windowID)) {
+            windowID = -1
+        }
+        // I know it's not good to set the state in a conditional but I can't think of another way to do it :(
+        if (current > 0 || (current === 0 && windowID === -1)) {
+            saveLesson(windowID, lesson).then((res : any) => {
+                setId(res.id)
+                console.log("Saved lesson " + res.id)
+            })
+        } else {
+            setId(windowID)
+        }
+    }, [current])
+
+
+    /* Functions corresponding to the navigator */
 
     function next() {
         let next = current + 1
         //Uncomment when ready for form validation
-        /*if (current === 0) {
-            const t = localStorage.getItem('lessonTitle')
-            const d = localStorage.getItem('lessonDescription')
+        if (current === 0) {
+            const t = lesson.name
+            const d = lesson.description
             if (t == null || t.length === 0) {
                 message.warning("Please enter a title")
                 next = 0
@@ -25,51 +67,25 @@ export default function Build() {
                 message.warning("Please add a description")
                 next = 0
             }
-        }*/
+        }
         setCurrent(next)
     }
-
-    function saveDetails() {
-        // TODO: add error handling here...
-        if (id != -1) {
-            // This means the course was already created and the user went back... 
-            // so maybe change this to a request that then updates the title
-            // however for now we will do nothing
-            return;
-        }
-        
-        const data = {
-            title: localStorage.getItem('courseTitle'),
-            description: localStorage.getItem('courseDescription')
-        }
-        let initData = {
-            body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: "POST"
-        }
-        fetch('/lesson/', initData).then(res => res.json())
-        .then((id) => {setId(id); console.log(id)})
-        .catch(error => console.error(error))
-    }
-
 
     const steps = [
         {
             title: 'Lesson Details',
             id: 'course',
-            content: <Details onUnmount={saveDetails}/>,
+            content: <Details lesson={lesson} setLesson={(l : ILesson) => setLesson(l)}/>,
         },
         {
             title: 'Lesson Builder',
             id: 'lesson',
-            content: <LessonBuild />
+            content: <LessonBuild lesson={lesson} setLesson={(l : ILesson) => setLesson(l)}/>
         },
         {
             title: 'Review & Publish',
             id: 'review',
-            content: <Publish />
+            content: <Publish lesson={lesson}/>
         }
     ]
     return (

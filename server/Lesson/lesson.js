@@ -3,13 +3,17 @@ const router = express.Router();
 
 var model = require('./model')
 
-router.post('/', (req, res) => {
-    model.create({"courseID" : req.body.courseID, "type": req.body.type, "data": req.body.data})
-    .then(id => res.send(id))
-})
-.post('/update', (req, res) => {
-    model.update(req.body.id, req.body.data)
-    .then(data=>res.send(data))
+router.put('/:id', (req, res) => {
+    if (req.params.id != -1 && model.exists(req.params.id)) {
+        // Update
+        console.log("updating course " + req.params.id)
+        model.update(req.params.id, {"name": req.body.name, "description": req.body.description, "type": req.body.type, "l_data": req.body.data})
+    } else {
+        // Create
+        console.log(`user ${req.session.user} is creating a new lesson`)
+        model.create({"name": req.body.name, "description": req.body.description, "type": req.body.type, "data": req.body.data, "author": req.session.user})
+        .then((id) => res.send(id))
+    }
 })
 
 router.get('/all/:limit?', (req, res) => {
@@ -23,6 +27,7 @@ router.get('/all/:limit?', (req, res) => {
 .get('/:id', (req, res) =>  {
     // return lesson based on req.params.id:
     // TODO: add handling of loading a lesson that doesn't exist. return a -1 and render a "doesn't exist" page.
+    console.log("loading lesson")
     model.read(req.params.id).then(data => res.send(data))
 })
 router.delete('/:id', (req, res) => {

@@ -41,7 +41,7 @@ const allow = (req, res, next) => {
         console.log("user not defined")
     }
     else {
-        console.log(req.session.user, 'user logged')
+        //console.log(req.session.user, 'user logged')
     }
     next()
 }

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Courses from './Course/ListView';
 // Add component imports here 
 import Home from './Home';
-import LessonBuild from './Lesson/Build/Build';
+import LessonBuild from './Lesson/Build/BuildWrap';
 import CourseBuild from './Course/Build/Build';
 import Nav from './Navbar/Nav';
 import About from './Page/About';

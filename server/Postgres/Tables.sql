@@ -16,6 +16,8 @@ CREATE TABLE chapter (
 
 CREATE TABLE lesson (
 	id serial PRIMARY KEY,
+	name text NOT NULL,
+	description text,
 	courseID integer,
 	chapterID integer,
 	type text NOT NULL,
