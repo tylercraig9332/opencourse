@@ -37,7 +37,7 @@ export default function ListView(props : CourseListProps) : ReactElement {
 
     const cardsMap = (
         cards!.map((course : any) => {
-            return <CourseCard title={course.name} description={course.description} />
+            return <CourseCard title={course.name} description={course.description} id={course.id}/>
         }) 
     )
 

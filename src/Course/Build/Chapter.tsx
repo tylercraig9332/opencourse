@@ -3,26 +3,41 @@ import {IChapter, ILesson} from '../../@types/Interface'
 import './build.css'
 
 import Tippy from '@tippy.js/react'
+import {saveChapter} from '../../api/chapter'
 
 import { Button, Modal, Input, notification } from 'antd'
 const {TextArea} = Input
 
 type ChapterProps = {
     chapter: IChapter,
-    setChapter(c : IChapter): void
+    setChapter(c : IChapter): void,
+    courseId : number
 }
 
 export default function Chapter(props : ChapterProps) {
 
-    const {name, description, lessons} = props.chapter
+    const {name, description} = props.chapter
 
     const [editModal, setEditModal] = useState<boolean>(false)
 
-    function updateChapter(name : string, desc : string, lessons : ILesson[]) {
+    function onCloseEdit() {
+        saveChapter(props.courseId, props.chapter).then((id: number) => {
+            let c = Object.assign({}, props.chapter)
+            c.id = id
+            props.setChapter(c)
+        })
+        
+        setEditModal(false)
+    }
+
+    function updateChapter(name : string, desc : string) {
         let c = Object.assign({}, props.chapter)
         c.name = name
         c.description = desc
-        c.lessons = lessons
+        //c.lessons = lessons
+        if (props.courseId === -1) {
+            //we need to add handling for this...
+        }
         props.setChapter(c)
     }
 
@@ -53,7 +68,7 @@ export default function Chapter(props : ChapterProps) {
         else if (id === 'chDesc') {
             d = event.currentTarget.value
         }
-        updateChapter(n, d, lessons)
+        updateChapter(n, d)
     }
 
 
@@ -64,7 +79,7 @@ export default function Chapter(props : ChapterProps) {
           onCancel={() => setEditModal(false)}
           onOk={() => setEditModal(false)}
           footer={[
-            <Button key="Ok" type="primary" onClick={() => setEditModal(false)}>Ok</Button>
+            <Button key="Ok" type="primary" onClick={onCloseEdit}>Ok</Button>
           ]}
         >
           <div style={container}>

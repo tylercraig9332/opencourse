@@ -6,7 +6,7 @@ function update(id, data) {
 
 async function create(data) {
     let id;
-    await db.one("INSERT INTO course(name, description) VALUES ($1, $2) RETURNING id", [data.name, data.description])
+    await db.one("INSERT INTO course(name, description, author) VALUES ($1, $2, $3) RETURNING id", [data.name, data.description, data.author])
     .then((data) => {
         id = data
     })

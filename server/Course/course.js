@@ -18,14 +18,14 @@ router.get('/all/:limit?', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    // TODO: pull data from request
-    model.create({"name" : req.body.title, "description": req.body.description})
+    console.log("making a new course by user ", req.session.user)
+    model.create({"name" : req.body.title, "description": req.body.description, "author": req.session.user})
     .then(id => res.send(id))
 })
 
 router.put('/', (req, res) => {
     if (!model.exists(req.body.id)) {
-        model.create({"name" : req.body.title, "description": req.body.description})
+        model.create({"name" : req.body.title, "description": req.body.description, "author" : req.session.user})
         .then(id => res.send(id))
     }
     else {

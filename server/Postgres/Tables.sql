@@ -1,14 +1,26 @@
 CREATE TABLE course (
 	id serial PRIMARY KEY,
 	name text NOT NULL,
-	description text NULL
+	description text NULL,
+	previewUrl text NULL,
+	author integer NOT NULL
+);
+
+CREATE TABLE chapter (
+	id serial PRIMARY KEY,
+	courseID integer NOT NULL,
+	name text NOT NULL,
+	description text NULL,
+	c_data text NULL
 );
 
 CREATE TABLE lesson (
 	id serial PRIMARY KEY,
 	courseID integer,
+	chapterID integer,
 	type text NOT NULL,
-	data text
+	l_data text NULL,
+	author integer NOT NULL
 );
 
 CREATE EXTENSION pgcrypto;

@@ -10,6 +10,7 @@ const course = require('./server/Course/course')
 const user = require('./server/User/user')
 const auth = require('./server/User/auth')
 const lesson = require('./server/Lesson/lesson')
+const chapter = require('./server/Chapter/chapter')
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
@@ -51,5 +52,6 @@ app.use('/course', course)
 app.use('/user', user)
 app.use('/auth', auth)
 app.use('/lesson', lesson)
+app.use('/chapter', chapter)
 
 app.listen(port, () => console.log(`listening on port ${port}`));

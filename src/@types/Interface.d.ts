@@ -1,8 +1,7 @@
 export interface IChapter {
     name: string,
     description: string,
-    lessons: ILesson[],
-    key?: number | string
+    id?: number | string
 }
 
 export interface ILesson {
@@ -11,5 +10,5 @@ export interface ILesson {
     type: string,
     data: string | JSON | Object,
     chapterId?: number,
-    key?: number | string
+    id?: number | string
 }

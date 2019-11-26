@@ -4,9 +4,11 @@ import Chapter from './Chapter'
 import './build.css'
 
 import { Button } from 'antd'
-import Tippy from '@tippy.js/react'
 
 import {IChapter, ILesson} from '../../@types/Interface'
+
+import { fetchDetails } from '../../api/course'
+import { fetchChapters, initChapters } from '../../api/chapter' 
 
 export default function Build() {
 
@@ -14,16 +16,27 @@ export default function Build() {
     const [courseDesc, setCourseDesc] = useState<string>('')
     const [courseId, setCourseId] = useState<number>(-1)
 
-    const [chapters, setChapters] = useState<IChapter[]>([{
-        name: 'Chapter 1',
-        description: 'the first chapter',
-        lessons: [{
-            name: 'Lesson 1',
-            description: '',
-            type: 'lecture',
-            data: {},
-        }], // : Lessson[],
-    }])
+    const [chapters, setChapters] = useState<IChapter[]>(initChapters)
+
+    useEffect(() => {
+        let windowID = Number(window.location.href.split('/')[5])
+        if (windowID === 0 || Number.isNaN(windowID)) {
+            windowID = -1
+        }
+        setCourseId(windowID)
+        fetchDetails(windowID).then((data : any) => {
+            setCourseName(data.name)
+            setCourseDesc(data.description)
+        })
+        fetchChapters(windowID).then((cdata: any) => {
+            console.log("Recieved on React")
+            console.log(cdata)
+            if (cdata.length < 1) cdata = initChapters
+            setChapters(cdata)
+        })
+        // fetch data about course
+        // also don't allow non-users to edit course with right permissions...
+    }, [])
 
 
     function addChapter() : void {
@@ -31,7 +44,7 @@ export default function Build() {
         c.push({
             name: `Chapter ${chapters.length + 1}`,
             description: 'edit me...',
-            lessons: []
+            //lessons: []
         })
         setChapters(c)
     }
@@ -46,17 +59,20 @@ export default function Build() {
                     setChapters(c)
                 }}
                 key={i}
+                courseId={courseId}
                 />
         )
     })
     
     return (
         <div className="container">
-            <h1 className="dg">Create New Course - {courseId}</h1>
+            <h1 className="dg">{(courseId === -1) ? 'Create New Course' : 'Edit Course'}</h1>
             <hr></hr>
-            <Details courseName={courseName} courseDesc={courseDesc} 
-                    setName={(val : string) => setCourseName(val)} setDesc={(val : string) => setCourseDesc(val)} 
-                    id={courseId} setId={(id : number) => setCourseId(id)}/>
+            <Details courseName={courseName} courseDesc={courseDesc} id={courseId}
+                    setName={(val : string) => setCourseName(val)} 
+                    setDesc={(val : string) => setCourseDesc(val)} 
+                    setId={(id : number) => setCourseId(id)}
+                    />
             <hr></hr>
             {/* TODO: Put this in it's own chapter... */}
             <h3 className="dg">Chapters</h3>

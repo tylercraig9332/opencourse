@@ -55,6 +55,22 @@ export const updateDetails = async (id : number, name : string, description : st
     return courseId
 }
 
+export const fetchDetails = async (id : number) => {
+
+    const headerInit = {
+        body: null,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'GET'
+    }
+
+    let data : Object = {}
+    await fetch(`/course/${id}`, headerInit).then(res => res.json())
+    .then((d) => data = d)
+    return data
+}
+
 export const listCourses = async (byType : string) => {
 
     const initData = {
