@@ -7,11 +7,11 @@ router.put('/:id', (req, res) => {
     if (req.params.id != -1 && model.exists(req.params.id)) {
         // Update
         console.log("updating course " + req.params.id)
-        model.update(req.params.id, {"name": req.body.name, "description": req.body.description, "type": req.body.type, "l_data": req.body.data})
+        model.update(req.params.id, {"name": req.body.name, "description": req.body.description, "type": req.body.type, "content": req.body.content})
     } else {
         // Create
         console.log(`user ${req.session.user} is creating a new lesson`)
-        model.create({"name": req.body.name, "description": req.body.description, "type": req.body.type, "data": req.body.data, "author": req.session.user})
+        model.create({"name": req.body.name, "description": req.body.description, "type": req.body.type, "content": req.body.content, "author": req.session.user})
         .then((id) => res.send(id))
     }
 })

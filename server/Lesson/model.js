@@ -2,7 +2,7 @@ const db =  require('../Postgres/db');
 
 async function update(id, data) {
     let u;
-    await db.one("UPDATE lesson SET name=$1, description=$2, type=$3, l_data=$4 WHERE id=$5 RETURNING id", [data.name, data.description, data.type, data.l_data, id])
+    await db.one("UPDATE lesson SET name=$1, description=$2, type=$3, content=$4 WHERE id=$5 RETURNING id", [data.name, data.description, data.type, data.content, id])
     .then((data) => {
         u = data
     })
@@ -11,7 +11,7 @@ async function update(id, data) {
 
 async function create(data) {
     let id;
-    await db.one("INSERT INTO lesson(name, description, type, l_data, author) VALUES ($1, $2, $3, $4, $5) RETURNING id", [data.name, data.description, data.type, data.data, data.author])
+    await db.one("INSERT INTO lesson(name, description, type, content, author) VALUES ($1, $2, $3, $4, $5) RETURNING id", [data.name, data.description, data.type, data.content, data.author])
     .then((data) => {
         id = data
     })

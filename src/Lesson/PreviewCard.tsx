@@ -11,7 +11,7 @@ export default function PreviewCard(props : PreviewCardProps) {
             <h6>{props.lesson.name}</h6>
             <p>{props.lesson.description}</p>
             <p>{props.lesson.type}</p>
-            <p>{props.lesson.data}</p>
+            <p>{props.lesson.content}</p>
         </div>
     )
 }

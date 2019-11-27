@@ -1,13 +1,19 @@
+import React, { useEffect } from 'react'
 import { Cascader } from 'antd'
-import React from 'react'
 import Lecture from './Lecture'
 import Video from './Video'
 export default function LessonBuild(props : any) {
 
     const [view, setView] = React.useState<string>('')
 
-    React.useEffect(() => {
-        //console.log(view)
+    useEffect(() => {
+        setView(props.lesson.type)
+    }, [])
+
+    useEffect(() => {
+        let l = Object.assign({}, props.lesson)
+        l.type = view
+        props.setLesson(l)
     }, [view])
 
     const casOptions = [
@@ -46,7 +52,7 @@ export default function LessonBuild(props : any) {
     const getLesson = () => {
         switch(view) {
             case 'lecture':
-                return <Lecture />
+                return <Lecture lesson={props.lesson} setLesson={props.setLesson}/>
             case 'video':
                 return <Video />
             default:

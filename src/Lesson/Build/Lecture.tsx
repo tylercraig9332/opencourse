@@ -3,28 +3,26 @@ import { Editor, EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import Toolbar from './Toolbar/Toolbar'
 
  
-export default function Lecture() {
+export default function Lecture(props : any) {
     const [editorState, setEditorState] = useState<EditorState>(EditorState.createEmpty())
     const [focus, setFocus] = useState<boolean>(false)
-    const [raw, setRaw] = useState<string>('')
     // I'm not certain on the ref type
     //const editorRef = (ref : any) => editorState = ref
 
-
     useEffect(() => {
-        // TODO: Load in editor state on load.
-        return function onUnmount() {
-            // Save Editor State in data field
-            console.log("saving editor state")
-            console.log(raw)
-            //const raw = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-            //console.log(raw)
+        let es = editorState
+        if (props.lesson.content != undefined || '') {
+            const cs = convertFromRaw(JSON.parse(props.lesson.content))
+            es = EditorState.createWithContent(cs)
         }
+        setEditorState(es)
     }, [])
 
     useEffect(() => {
         const raw = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-        setRaw(raw)
+        let l = Object.assign({}, props.lesson)
+        l.content = raw
+        props.setLesson(l)
     }, [editorState])
     
     // TODO: I would like to add an onEnter macro that will create a new block

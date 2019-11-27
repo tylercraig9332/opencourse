@@ -21,7 +21,7 @@ CREATE TABLE lesson (
 	courseID integer,
 	chapterID integer,
 	type text NOT NULL,
-	l_data text NULL,
+	content text NULL,
 	author integer NOT NULL
 );
 

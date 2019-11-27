@@ -8,7 +8,7 @@ export interface ILesson {
     name: string,
     description: string,
     type: string,
-    data: string | JSON | Object,
+    content: string | JSON | Object,
     chapterId?: number,
     id?: number | string
 }

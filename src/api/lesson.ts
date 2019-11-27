@@ -4,11 +4,12 @@ export const initLesson = {
     name: 'New Lesson',
     description: 'Learn something new!',
     author: -1,
-    type: 'lecture',
-    data: ''
+    type: '',
+    content: ''
 } as ILesson
 
 export const saveLesson = async (id : number, data : any) => {
+    if (data == undefined) return
     let initData = {
         body: JSON.stringify(data),
         headers: {
@@ -19,7 +20,7 @@ export const saveLesson = async (id : number, data : any) => {
     let r = id
     await fetch('/lesson/' + id, initData).then(res => res.json())
     .then((res) => r = res)
-    .catch(error => console.error(error))
+    //.catch(error => console.error(error))
     return r
 }
 
