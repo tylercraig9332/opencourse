@@ -1,13 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { CourseListProps } from '../@types/Props'
 
 import { notification } from 'antd'
 
 import LoadSpin from '../Util/LoadSpin'
-import { listCourses } from '../api/course'
+import { listCourses, getAuthsData } from '../api/course'
 import CourseCard from './CourseCard'
 
-export default function ListView(props : CourseListProps) : ReactElement {
+export default function ListView() : ReactElement {
     
     const [cards, setCards] = useState<Object[] | null>(null)
     const [loaded, setLoaded] = useState<boolean>(false)
@@ -16,19 +15,34 @@ export default function ListView(props : CourseListProps) : ReactElement {
     useEffect(() => {
         // TODO collect data from the url and pass into the back end to receive cards
         let fetchString = window.location.href.split('/')[4]
-        console.log(fetchString)
+        if (fetchString == 'all') {
+            listCourses(fetchString).then(c => {
+                console.log(c)
+                if (c != undefined) {
+                    setCards(c)
+                } 
+                else {
+                    setCards(null)
+                }  
+            })
+        } else if (Number(fetchString) != NaN) {
+            let tempNum = Number(fetchString)
+            getAuthsData(tempNum)
+                .then(d => {
+                    console.log(d)
+                    if (d != undefined) {
+                        setCards(d)
+                    } 
+                    else {
+                        setCards(null)
+                    } 
+                })
+        }
+        
         //setFavorite(isFavorite)
         //setCards(testCards)
         // GetCourses
-        listCourses(fetchString).then(c => {
-            console.log(c)
-            if (c != undefined) {
-                setCards(c)
-            } 
-            else {
-                setCards(null)
-            }  
-        })
+        
     }, [])
 
 

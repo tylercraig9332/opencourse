@@ -20,6 +20,13 @@ async function read(id) {
     return course
 }
 
+async function courseByAuthor(authID) {
+    let course;
+    await db.any("SELECT * FROM course WHERE author=$1", authID)
+    .then((data) => course = data)
+    return course
+}
+
 async function list(limit) {
     let d = [];
     await db.any("SELECT * FROM course LIMIT $1", [limit])
@@ -56,5 +63,6 @@ module.exports = {
     read: read,
     list: list,
     delete: _delete,
-    exists: exists
+    exists: exists,
+    courseByAuthor: courseByAuthor
 }

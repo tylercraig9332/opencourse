@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { needLogin } from '../Util/auth'
-
+import { getUsersData } from '../api/profile'
 import { Icon, Menu, message } from 'antd';
 const { SubMenu, Item, Divider, ItemGroup } = Menu
 export default function Nav() {
 
     const [logged, setLogged] = useState<Boolean>(false)
     const [id, setId] = useState<number>(-1)
+    const [userData, setUserData] = useState(Object)
 
     useEffect(() => {
         fetch('/auth/logged').then((res) => res.json())
@@ -26,7 +27,18 @@ export default function Nav() {
             console.log("user is not logged in or an error has occured", err)
             evauluateLogin()
         })
+
+        
     }, [])
+
+    useEffect(() => {
+        if(id != -1) {
+            getUsersData(id)
+                .then(d => {
+                    setUserData(d)
+                })
+        }
+    }, [id])
 
     function evauluateLogin() {
         const locs = window.location.href.split('/')
@@ -40,11 +52,17 @@ export default function Nav() {
     function redirect(path: string) : void {
         window.location.href = path
     }
-
+    
     const account = (
         <SubMenu title={
             <span className="submenu-title-wrapper" onClick={() => redirect(`/profile`)}><i className="fas fa-user"></i> Account</span>
         } style={right}>
+            <div style={{margin: '15%'}}>
+                Logged in as: <br/>
+            </div>
+            <div style={{margin: '15%', marginBottom: '10px'}}>
+                <b>{userData.username}</b>
+            </div>
             <Item onClick={() => redirect('/profile/' + id)}>
                 <Icon type="user" style={{ fontSize: '16px', bottom: '3px', position: 'relative'}}/> Profile 
             </Item>
