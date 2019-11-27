@@ -88,3 +88,18 @@ export const listCourses = async (byType : string) => {
     })
     return c
 }
+
+export const getAuthsData = async (authID : number) => {
+    const headerInit = {
+        body: null,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'GET'
+    }
+
+    let data : Object[] = []
+    await fetch(`/course/author/${authID}`, headerInit).then(res => res.json())
+    .then((d) => data = d)
+    return data
+}

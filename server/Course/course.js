@@ -17,6 +17,10 @@ router.get('/all/:limit?', (req, res) => {
     model.read(req.params.id).then(data => res.send(data))
 })
 
+router.get('/author/:id', (req, res) => {
+    model.courseByAuthor(req.params.id).then(data => res.send(data))
+})
+
 router.post('/', (req, res) => {
     console.log("making a new course by user ", req.session.user)
     model.create({"name" : req.body.title, "description": req.body.description, "author": req.session.user})

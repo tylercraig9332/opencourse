@@ -12,6 +12,7 @@ import Test from './Page/Test';
 import Logout from './User/Logout';
 import Portal from './User/Portal';
 import SignUp from './User/SignUp';
+import Profile from './User/Profile';
 
 
 export default class Routes extends Component {
@@ -31,6 +32,7 @@ export default class Routes extends Component {
 						<Route path='/courses/build/' component={CourseBuild}/>
 						<Route path='/contrib/' component={Contribute}/>
 						<Route path='/about/' component={About} />
+						<Route path='/profile/' component={Profile} />
 				</Switch>
 			</div>
 		</BrowserRouter>
