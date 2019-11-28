@@ -11,7 +11,8 @@ export default function Lecture(props : any) {
 
     useEffect(() => {
         let es = editorState
-        if (props.lesson.content != undefined || '') {
+        if (props.lesson.content != undefined && props.lesson.content !== '') {
+            console.log(props.lesson.content)
             const cs = convertFromRaw(JSON.parse(props.lesson.content))
             es = EditorState.createWithContent(cs)
         }
