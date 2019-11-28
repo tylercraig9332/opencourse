@@ -1,7 +1,22 @@
 const db =  require('../Postgres/db');
 
 function update(id, data) {
-    db.one("UPDATE course SET name=$1, description=$2 where id=$3", [data.name, data.description, id])
+    let sql = "UPDATE course SET "
+    let vals = []
+    for (let i = 0; i < data.length; i++) {
+        const o = data[i]
+        const key = Object.keys(o)[0]
+        sql += key + `=$${i+1}`
+        if (i < data.length - 1) {
+            sql += ', '
+        }
+        vals.push(o[key])
+    }
+    sql += ' WHERE id=$' + (data.length + 1)
+    console.log(sql)
+    vals.push(id)
+    db.one(sql, [...vals])
+    //db.one("UPDATE course SET name=$1, description=$2 where id=$3", [data.name, data.description, id])
 }
 
 async function create(data) {

@@ -88,3 +88,16 @@ export const listCourses = async (byType : string) => {
     })
     return c
 }
+
+export const savePreview = (id : number, url : string) => {
+    const initData = {
+        body: JSON.stringify({preview: url}),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    }
+    fetch('/course/preview/' + id, initData).then((res) => res.json())
+    .then((res) => console.log(res))
+    
+}

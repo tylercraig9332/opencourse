@@ -2,7 +2,7 @@ CREATE TABLE course (
 	id serial PRIMARY KEY,
 	name text NOT NULL,
 	description text NULL,
-	previewUrl text NULL,
+	preview text NULL,
 	author integer NOT NULL
 );
 

@@ -16,6 +16,9 @@ router.get('/all/:limit?', (req, res) => {
     // TODO: add handling of loading a course that doesn't exist. return a -1 and render a "doesn't exist" page.
     model.read(req.params.id).then(data => res.send(data))
 })
+.get('/preview/:id', (req, res) => {
+    model.read(req.params.id).then(data =>  res.send(data.preview))
+})
 
 router.post('/', (req, res) => {
     console.log("making a new course by user ", req.session.user)
@@ -29,8 +32,24 @@ router.put('/', (req, res) => {
         .then(id => res.send(id))
     }
     else {
-        model.update(req.body.id, {"name" : req.body.name, "description": req.body.description})
+        const data = [
+            {
+                "name" : req.body.name
+            },
+            {
+                "description": req.body.description
+            }
+        ]
+        model.update(req.body.id, data)
     }
+})
+.put('/preview/:id', (req, res) => {
+    const data = [
+        {
+            "preview": req.body.preview
+        }
+    ]
+    model.update(req.params.id, data)
 })
 
 router.delete('/:id', (req, res) => {

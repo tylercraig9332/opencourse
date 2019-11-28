@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Details from './Details'
 import Chapter from './Chapter'
+import Preview from './Preview'
 import './build.css'
 
 import { Button } from 'antd'
@@ -15,6 +16,7 @@ export default function Build() {
     const [courseName, setCourseName] = useState<string>('')
     const [courseDesc, setCourseDesc] = useState<string>('')
     const [courseId, setCourseId] = useState<number>(-1)
+    const [coursePrev, setCoursePrev] = useState<string>('/static/')
 
     const [chapters, setChapters] = useState<IChapter[]>(initChapters)
 
@@ -72,6 +74,8 @@ export default function Build() {
                     setId={(id : number) => setCourseId(id)}
                     />
             <hr></hr>
+            <Preview id={courseId} preview={coursePrev} setPreview={setCoursePrev}/>
+            <hr></hr>
             {/* TODO: Put this in it's own chapter... */}
             <h3 className="dg">Chapters</h3>
             <hr style={{width: '10%', marginLeft: 0}}></hr>
@@ -80,7 +84,6 @@ export default function Build() {
                 
                 <Button block onClick={addChapter}>Add Another Chapter</Button>
             </div>
-            
         </div>
     )
 }
