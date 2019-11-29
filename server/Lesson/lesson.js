@@ -6,8 +6,8 @@ var model = require('./model')
 router.put('/:id', (req, res) => {
     if (req.params.id != -1 && model.exists(req.params.id)) {
         // Update
-        console.log("updating course " + req.params.id)
-        model.update(req.params.id, {"name": req.body.name, "description": req.body.description, "type": req.body.type, "content": req.body.content})
+        console.log("updating lesson " + req.params.id)
+        model.update(req.params.id, [{"name": req.body.name}, {"description": req.body.description}, {"type": req.body.type}, {"content": req.body.content}])
     } else {
         // Create
         console.log(`user ${req.session.user} is creating a new lesson`)
@@ -23,6 +23,13 @@ router.get('/all/:limit?', (req, res) => {
         limit = req.params.limit
     }
     model.list(limit).then(r => res.send(r))
+})
+.get('/:type/:limit', (req, res) => {
+    let limit = 10
+    if (!req.params.limit) {
+        limit = req.params.limit
+    }
+    model.list(limit, req.params.type)
 })
 .get('/:id', (req, res) =>  {
     // return lesson based on req.params.id:

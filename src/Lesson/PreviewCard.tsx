@@ -1,17 +1,19 @@
-import React from 'react'
-import { ILesson } from '../@types/Interface'
+import React, { useState } from 'react'
+import { PreviewCardProps } from '../@types/Props'
+import VideoCard from './Cards/VideoCard'
+import LectureCard from './Cards/LectureCard'
 
-type PreviewCardProps = {
-    lesson: ILesson
-}
 
 export default function PreviewCard(props : PreviewCardProps) {
-    return (
-        <div>
-            <h6>{props.lesson.name}</h6>
-            <p>{props.lesson.description}</p>
-            <p>{props.lesson.type}</p>
-            <p>{props.lesson.content}</p>
-        </div>
-    )
+
+    if (props == undefined) return null
+    switch (props.lesson.type) {
+        case 'lecture':
+            return <LectureCard lesson={props.lesson} />
+        case 'video':
+            return <VideoCard lesson={props.lesson} />
+        default:
+            return null
+    }
+    
 }

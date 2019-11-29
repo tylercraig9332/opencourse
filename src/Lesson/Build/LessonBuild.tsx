@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Cascader } from 'antd'
-import Lecture from './Lecture'
-import Video from './Video'
+import Lecture from './Types/Lecture'
+import Video from './Types/Video'
 export default function LessonBuild(props : any) {
 
     const [view, setView] = React.useState<string>('')
@@ -54,7 +54,7 @@ export default function LessonBuild(props : any) {
             case 'lecture':
                 return <Lecture lesson={props.lesson} setLesson={props.setLesson}/>
             case 'video':
-                return <Video />
+                return <Video lesson={props.lesson} setLesson={props.setLesson}/>
             default:
                 return (<div>{view} coming soon...</div>)
 

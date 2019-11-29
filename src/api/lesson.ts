@@ -38,3 +38,18 @@ export const loadLesson = async (id : number) : Promise<ILesson> => {
     .then(l => lesson = l)
     return lesson
 }
+
+export const fetchLessons = async (type : string) : Promise<ILesson[]> => {
+    if (type == null || type == undefined) type = 'all'
+    let initData = {
+        body: null,
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        method: 'GET'
+    }
+    let lessons = [] as ILesson[]
+    await fetch(`/lesson/${type}/10`, initData).then(res => res.json())
+    .then(l => lessons = l)
+    return lessons
+}

@@ -1,12 +1,21 @@
 const db =  require('../Postgres/db');
 
-async function update(id, data) {
-    let u;
-    await db.one("UPDATE lesson SET name=$1, description=$2, type=$3, content=$4 WHERE id=$5 RETURNING id", [data.name, data.description, data.type, data.content, id])
-    .then((data) => {
-        u = data
-    })
-    return u;
+function update(id, data) {
+    let sql = "UPDATE lesson SET "
+    let vals = []
+    for (let i = 0; i < data.length; i++) {
+        const o = data[i]
+        const key = Object.keys(o)[0]
+        sql += key + `=$${i+1}`
+        if (i < data.length - 1) {
+            sql += ', '
+        }
+        vals.push(o[key])
+    }
+    sql += ' WHERE id=$' + (data.length + 1)
+    console.log(sql)
+    vals.push(id)
+    db.one(sql, [...vals])
 }
 
 async function create(data) {
@@ -25,9 +34,15 @@ async function read(id) {
     return lesson
 }
 
-async function list(limit) {
+async function list(limit, type) {
+    let q = "SELECT * FROM lesson LIMIT $1"
+    console.log(type)
+    if (type != null && type != undefined) {
+        q = `SELECT * FROM lesson WHERE type='${type}' LIMIT $1`
+    }
+
     let d = [];
-    await db.any("SELECT * FROM lesson LIMIT $1", [limit])
+    await db.any(q, [limit])
     .then((data) => {
         d = data
     })

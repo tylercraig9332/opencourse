@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Editor, EditorState, convertToRaw, convertFromRaw } from 'draft-js'
-import Toolbar from './Toolbar/Toolbar'
+import Toolbar from '../Toolbar/Toolbar'
 
  
 export default function Lecture(props : any) {
