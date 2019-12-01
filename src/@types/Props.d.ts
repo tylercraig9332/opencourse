@@ -5,7 +5,8 @@ type CourseListProps = {
 }
 
 type PreviewCardProps = {
-    lesson: ILesson
+    lesson: ILesson,
+    toolbar?: boolan
 }
 
 export {

@@ -9,11 +9,11 @@ const { Meta } = Card
 export default function LectureCard(props : PreviewCardProps) {
     return (
         <Card style={cardStyle}
-        actions={[
+        actions={(props.toolbar) ? [
             <ContextMenuIcon id={props.lesson.id} />,
             <CommentIcon />,
             <LikeIcon />
-        ]}
+        ] : undefined}
         cover={<img alt={props.lesson.name} style={{maxWidth: '100%', height: '300px'}} src={props.lesson.preview}/>}>
             <Meta title={props.lesson.name} description={props.lesson.description} />
         </Card>

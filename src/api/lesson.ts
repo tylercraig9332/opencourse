@@ -67,3 +67,17 @@ export const savePreview = (id : number, url : string) => {
     .then((res) => console.log(res))
     
 }
+
+export const fetchAuth = (id : number) : Promise<boolean> => {
+    const initData = {
+        body: null,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'GET'
+    }
+    return fetch('/lesson/auth/' + id, initData)
+    .then(res => res.json())
+    .then(res => {console.log(res); return res})
+    .catch((err) => {console.log(err); return false})
+}

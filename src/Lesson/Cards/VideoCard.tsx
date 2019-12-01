@@ -32,10 +32,10 @@ export default function VideoCard(props : PreviewCardProps) {
         <Card title={props.lesson.name} 
         extra={drop} 
         style={cardStyle}
-        actions={[
+        actions={(props.toolbar) ? [
             <CommentIcon />,
             <LikeIcon />
-        ]}>
+        ] : undefined}>
             <Video videoID={JSON.parse(props.lesson.content).videoID} visible/>
         </Card>
     )

@@ -33,7 +33,7 @@ export default function Preview(props : any) {
     return (
         <React.Fragment>
             <h3 className="dg">Preview Image</h3>
-            <hr style={{width: '7%', marginLeft: 0}}></hr>
+            <hr style={{width: '16%', marginLeft: 0}}></hr>
             <br></br>
             <p className="dg">Select a preview image</p>
             <div style={{display: 'flex', alignItems: 'end', flexWrap: 'wrap'}}>

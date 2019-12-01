@@ -5,7 +5,7 @@ import LessonBuild from './LessonBuild'
 import Publish from './Publish'
 
 import { ILesson } from '../../@types/Interface'
-import { initLesson, saveLesson, loadLesson } from '../../api/lesson'
+import { initLesson, saveLesson, loadLesson, fetchAuth } from '../../api/lesson'
 
 const { Step } = Steps
 
@@ -24,6 +24,12 @@ export default function BuildWrap() {
             windowID = -1
         }
         setId(windowID)
+        fetchAuth(windowID).then(auth => {
+            if (!auth) {
+                message.error("You do not have permisson to edit this lesson.")
+                window.setTimeout(() => window.location.href = '/lessons/all', 100)
+            }
+        })
         loadLesson(windowID).then(l => {
             if (l == undefined) l = initLesson
             setLesson(l)

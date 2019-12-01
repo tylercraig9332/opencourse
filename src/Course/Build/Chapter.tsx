@@ -5,6 +5,8 @@ import './build.css'
 import Tippy from '@tippy.js/react'
 import {saveChapter} from '../../api/chapter'
 
+import LessonTimeline from './LessonTimeline'
+
 import { Button, Modal, Input, notification } from 'antd'
 const {TextArea} = Input
 
@@ -40,23 +42,6 @@ export default function Chapter(props : ChapterProps) {
         }
         props.setChapter(c)
     }
-
-    function addLesson() : void {
-        /** Need to build Lesson View */
-        /*let l = [...lessons]
-        const num = l.length
-        l.push({
-            name: 'Lesson ' + num,
-            description: 'edit me...',
-            type: '',
-            data: {}
-        })
-        updateChapter(name, description, l)*/
-        notification['warning']({
-            message: "This will redirect to lessons/build, but for now it does nothing since I haven't implemented the back-end for this yet",
-        })
-        //window.location.href = '/lessons/build/'
-    } 
 
     function editChapter(event : any) : void {
         const id = event.currentTarget.id 
@@ -104,11 +89,7 @@ export default function Chapter(props : ChapterProps) {
             <p>{description}</p>
 
             {/* LESSONS MAP HERE */}
-            <div className="addLesson">
-                <Tippy content={<div>Add Lesson</div>} arrow={true}>
-                    <span><Button block onClick={addLesson}><i className="fas fa-plus"></i></Button></span>
-                </Tippy>
-            </div>
+            <LessonTimeline chapterID={props.chapter.id} courseID={props.courseId}/>
             <hr style={{width: 100}}></hr>
         </div>
     )

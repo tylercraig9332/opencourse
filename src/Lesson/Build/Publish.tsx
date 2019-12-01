@@ -6,6 +6,6 @@ export default function Publish(props : any) {
         <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
             <h4 style={{color: 'dimgray'}}>Lesson Card Preview</h4>
             <hr style={{width: 200}}></hr>
-            <PreviewCard lesson={props.lesson} />
+            <PreviewCard lesson={props.lesson} toolbar={false}/>
         </div>)
 }

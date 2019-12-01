@@ -12,7 +12,6 @@ export default function Portal(props: any) {
     function handleSubmit(event : any) {
         event.preventDefault()
         const form = formToJSON(event.target)
-        console.log(form)
         const reqHeaders = {
           body: JSON.stringify(form),
           headers: {

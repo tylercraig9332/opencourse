@@ -16,12 +16,10 @@ export default function ListView(props : CourseListProps) : ReactElement {
     useEffect(() => {
         // TODO collect data from the url and pass into the back end to receive cards
         let fetchString = window.location.href.split('/')[4]
-        console.log(fetchString)
         //setFavorite(isFavorite)
         //setCards(testCards)
         // GetCourses
         listCourses(fetchString).then(c => {
-            console.log(c)
             if (c != undefined) {
                 setCards(c)
             } 
@@ -37,7 +35,7 @@ export default function ListView(props : CourseListProps) : ReactElement {
 
     const cardsMap = (
         cards!.map((course : any) => {
-            return <CourseCard title={course.name} description={course.description} id={course.id} preview={course.preview}/>
+            return <CourseCard key={course.id} title={course.name} description={course.description} id={course.id} preview={course.preview}/>
         }) 
     )
 

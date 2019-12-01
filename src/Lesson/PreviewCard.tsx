@@ -7,11 +7,12 @@ import LectureCard from './Cards/LectureCard'
 export default function PreviewCard(props : PreviewCardProps) {
 
     if (props == undefined) return null
+    let toolbar = (props.toolbar != undefined) ? props.toolbar : true
     switch (props.lesson.type) {
         case 'lecture':
-            return <LectureCard lesson={props.lesson} />
+            return <LectureCard lesson={props.lesson} toolbar={toolbar}/>
         case 'video':
-            return <VideoCard lesson={props.lesson} />
+            return <VideoCard lesson={props.lesson} toolbar={toolbar}/>
         default:
             return null
     }

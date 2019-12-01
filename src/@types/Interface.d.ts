@@ -9,6 +9,7 @@ export interface ILesson {
     description: string,
     type: string,
     content: string,
+    author: number,
     preview?: string,
     chapterId?: number,
     id?: number | string

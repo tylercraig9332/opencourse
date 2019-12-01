@@ -3,7 +3,13 @@ const router = express.Router();
 
 var model = require('./model')
 
-router.get('/all/:limit?', (req, res) => {
+router.get('/auth/:id', (req, res) => {
+    // Evaluate if author's equal.
+    model.read(req.params.id).then(course => {
+        res.send(course.author == req.session.user) 
+    })
+})
+.get('/all/:limit?', (req, res) => {
     // Return all models based on a limit, if undefined then we return 10
     let limit = 10
     if (!req.params.limit) {
@@ -40,7 +46,7 @@ router.put('/', (req, res) => {
                 "description": req.body.description
             }
         ]
-        model.update(req.body.id, data)
+        updateIfAuth(req.body.id, data, req.session.user)
     }
 })
 .put('/preview/:id', (req, res) => {
@@ -49,11 +55,22 @@ router.put('/', (req, res) => {
             "preview": req.body.preview
         }
     ]
-    model.update(req.params.id, data)
+    updateIfAuth(req.params.id, data, req.session.user)
 })
 
 router.delete('/:id', (req, res) => {
     model.delete(req.params.id).then(r => res.send(r))
 })
+
+function updateIfAuth(id, data, user) {
+    model.read(id).then((course) => {
+        if (course.author == user) {
+            model.update(id, data)
+        }
+        else {
+            console.log(`user ${user} attempted to update another course owned by ${course.author}`)
+        }
+    })
+}
 
 module.exports = router

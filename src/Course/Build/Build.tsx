@@ -5,11 +5,11 @@ import Preview from '../../Util/Preview'
 import { savePreview } from '../../api/course'
 import './build.css'
 
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 
 import {IChapter, ILesson} from '../../@types/Interface'
 
-import { fetchDetails } from '../../api/course'
+import { fetchDetails, fetchAuth } from '../../api/course'
 import { fetchChapters, initChapters } from '../../api/chapter' 
 
 export default function Build() {
@@ -27,6 +27,15 @@ export default function Build() {
             windowID = -1
         }
         setCourseId(windowID)
+        fetchAuth(windowID).then(auth => {
+            // Handle response from server allowing user to edit this course
+            // Note: This is also done on the server, This just prevents the ui from loading
+            // So if someone were to maliciously cut this code out from browser, the server should still prevent editing of courses not owned 
+            if (!auth) {
+                message.error("You do not have permisson to edit this course.")
+                window.setTimeout(() => window.location.href = '/courses/all', 100)
+            }
+        })
         fetchDetails(windowID).then((data : any) => {
             setCourseName(data.name)
             setCourseDesc(data.description)

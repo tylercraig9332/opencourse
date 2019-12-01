@@ -7,7 +7,7 @@ router.put('/:id', (req, res) => {
     if (req.params.id != -1 && model.exists(req.params.id)) {
         // Update
         console.log("updating lesson " + req.params.id)
-        model.update(req.params.id, [{"name": req.body.name}, {"description": req.body.description}, {"type": req.body.type}, {"content": req.body.content}])
+        updateIfAuth(req.params.id, [{"name": req.body.name}, {"description": req.body.description}, {"type": req.body.type}, {"content": req.body.content}], req.session.user)
     } else {
         // Create
         console.log(`user ${req.session.user} is creating a new lesson`)
@@ -16,10 +16,16 @@ router.put('/:id', (req, res) => {
     }
 })
 .put('/preview/:id', (req, res) => {
-    model.update(req.params.id, [{"preview": req.body.preview}])
+    updateIfAuth(req.params.id, [{"preview": req.body.preview}], req.session.user)
 })
 
-router.get('/all/:limit?', (req, res) => {
+router.get('/auth/:id', (req, res) => {
+    // Evaluate if author's equal.
+    model.read(req.params.id).then(lesson => {
+        res.send(lesson.author == req.session.user) 
+    })
+})
+.get('/all/:limit?', (req, res) => {
     // Return all models based on a limit, if undefined then we return 10
     let limit = 10
     if (!req.params.limit) {
@@ -43,5 +49,16 @@ router.get('/all/:limit?', (req, res) => {
 router.delete('/:id', (req, res) => {
     model.delete(req.params.id).then(r => res.send(r))
 })
+
+function updateIfAuth(id, data, user) {
+    model.read(id).then((lesson) => {
+        if (lesson.author == user) {
+            model.update(req.body.id, data)
+        }
+        else {
+            console.log(`user ${user} attempted to update another lesson owned by ${lesson.author}`)
+        }
+    })
+}
 
 module.exports = router
