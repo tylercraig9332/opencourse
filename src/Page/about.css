@@ -1,0 +1,34 @@
+.title {
+    padding: 20px;
+}
+
+.h {
+    color: dimgray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 42px;
+}
+
+.lib {
+    display: block;
+    width: 100%;
+    margin: -58% auto -55% auto;
+}
+
+.moon {
+    display: block;
+    width: 100%;
+    margin: -15% auto -15% auto;
+}
+
+.collab {
+    display: block;
+    width: 10%;
+    height: 10%;
+    margin: 0 auto 0 auto;
+}
+
+.explore {
+    display: block;
+    width: 100%;
+    margin: -40% auto 0 auto;
+}

@@ -87,8 +87,7 @@ export default function Chapter(props : ChapterProps) {
                     </Tippy>
             </h3>
             <p>{description}</p>
-
-            {/* LESSONS MAP HERE */}
+            <br></br>
             <LessonTimeline chapterID={props.chapter.id} courseID={props.courseId}/>
             <hr style={{width: 100}}></hr>
         </div>
