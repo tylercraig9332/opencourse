@@ -113,8 +113,8 @@ export default function BuildWrap() {
                     </Button>
                 )}
                 {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => message.success('Published!')} style={{ marginLeft: 8 }}>
-                    Publish
+                    <Button type="primary" onClick={() => {message.success('Success!'); window.setTimeout(() => window.location.href = "/lessons/all", 500)}} style={{ marginLeft: 8 }}>
+                    Done
                     </Button>
                 )}
                 {current < steps.length - 1 && (

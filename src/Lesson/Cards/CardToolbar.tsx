@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Icon, message } from 'antd'
+import { Icon, Dropdown, Menu, message } from 'antd'
 
 
 function LikeIcon() {
@@ -30,7 +30,29 @@ function CommentIcon() {
     )
 }
 
+function ContextMenuIcon(props : any) {
+    const menu =(
+        <Menu>
+            <Menu.Item>
+                <a href={`/lessons/view/${props.id}`}>View</a>
+            </Menu.Item>
+            <Menu.Item>
+                <a href="/#">Comment</a>
+            </Menu.Item>
+            <Menu.Item>
+                <a href={`/lessons/build/${props.id}`}>Edit</a>
+            </Menu.Item>
+        </Menu>
+    )
+    return (
+        <Dropdown overlay={menu} placement='topRight'>
+            <Icon type="menu" />
+        </Dropdown>
+    )
+}
+
 export {
     LikeIcon,
-    CommentIcon
+    CommentIcon,
+    ContextMenuIcon
 }

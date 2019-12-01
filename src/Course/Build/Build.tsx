@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Details from './Details'
 import Chapter from './Chapter'
-import Preview from './Preview'
+import Preview from '../../Util/Preview'
+import { savePreview } from '../../api/course'
 import './build.css'
 
 import { Button } from 'antd'
@@ -37,6 +38,11 @@ export default function Build() {
         // fetch data about course
         // also don't allow non-users to edit course with right permissions...
     }, [])
+
+    function handlePreview(uri : string) {
+        savePreview(courseId, uri)
+        setCoursePrev(uri)
+    }
 
 
     function addChapter() : void {
@@ -74,7 +80,7 @@ export default function Build() {
                     setId={(id : number) => setCourseId(id)}
                     />
             <hr></hr>
-            <Preview id={courseId} preview={coursePrev} setPreview={setCoursePrev}/>
+            <Preview id={courseId} preview={coursePrev} savePreview={handlePreview}/>
             <hr></hr>
             {/* TODO: Put this in it's own chapter... */}
             <h3 className="dg">Chapters</h3>

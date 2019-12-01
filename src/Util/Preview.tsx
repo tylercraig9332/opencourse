@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { savePreview } from '../../api/course'
-import PreviewImages from '../../Util/Previews'
+import PreviewImages from './Previews'
 
 import { Card } from 'antd'
 
@@ -17,13 +16,13 @@ export default function Preview(props : any) {
             const obj = PreviewImages[active]
             uri = obj.imageUrl
         }
-        savePreview(props.id, uri)
+        props.savePreview(uri)
     }, [active])
 
 
     const prevs = PreviewImages.map((item, i) => {
         return (
-            <div style={active === i ? activeStyle : cardStyle} onClick={() => setActive(i)}>
+            <div key={item.title} style={active === i ? activeStyle : cardStyle} onClick={() => setActive(i)}>
                 <Card hoverable style={cStyle} cover={<img style={imageStyle} src={item.imageUrl}/>}>
                     <Meta title={item.title}/>
                 </Card>
@@ -36,7 +35,7 @@ export default function Preview(props : any) {
             <h3 className="dg">Preview Image</h3>
             <hr style={{width: '7%', marginLeft: 0}}></hr>
             <br></br>
-            <p className="dg">Select a preview image for your course</p>
+            <p className="dg">Select a preview image</p>
             <div style={{display: 'flex', alignItems: 'end', flexWrap: 'wrap'}}>
                 {prevs}
             </div>

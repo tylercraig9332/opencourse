@@ -5,7 +5,8 @@ export const initLesson = {
     description: 'Learn something new!',
     author: -1,
     type: '',
-    content: ''
+    content: '',
+    preview: '/static/waves'
 } as ILesson
 
 export const saveLesson = async (id : number, data : any) => {
@@ -52,4 +53,17 @@ export const fetchLessons = async (type : string) : Promise<ILesson[]> => {
     await fetch(`/lesson/${type}/10`, initData).then(res => res.json())
     .then(l => lessons = l)
     return lessons
+}
+
+export const savePreview = (id : number, url : string) => {
+    const initData = {
+        body: JSON.stringify({preview: url}),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    }
+    fetch('/lesson/preview/' + id, initData).then((res) => res.json())
+    .then((res) => console.log(res))
+    
 }

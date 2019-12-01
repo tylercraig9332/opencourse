@@ -15,6 +15,9 @@ router.put('/:id', (req, res) => {
         .then((id) => res.send(id))
     }
 })
+.put('/preview/:id', (req, res) => {
+    model.update(req.params.id, [{"preview": req.body.preview}])
+})
 
 router.get('/all/:limit?', (req, res) => {
     // Return all models based on a limit, if undefined then we return 10
