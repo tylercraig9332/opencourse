@@ -8,7 +8,9 @@ import {notification} from 'antd'
 
 type LVProps = {
     fetchString : string,
-    title: string
+    title: string,
+    toolbar?: boolean,
+    onClick?: any
 }
 
 export default function ListView(props : LVProps) { 
@@ -26,16 +28,24 @@ export default function ListView(props : LVProps) {
                 setCards(null)
             } 
             setLoaded(true) 
+        }).catch((err) => {
+            console.error(err)
+            setLoaded(true)
         })
     }, [])
 
 
-    if (cards == undefined && loaded) notification.error({message: 'An Error has occured with loading lessons', description: 'This may be due to none existing'})
-    if (cards == undefined && !loaded) return <LoadSpin message="Loading lesosns..."/>
-
+    if (cards == null) {
+        if (loaded) {
+            notification.error({message: 'An Error has occured with loading lessons', description: 'This may be due to none existing'})
+        return null
+        }
+        return <LoadSpin message="Loading lesosns..."/>
+    }
+    const t : boolean = (props.toolbar == null) ? true : props.toolbar  
     const cardsMap = (
         cards!.map((lesson : any) => {
-            return <div style={{display: 'inline-block'}} key={lesson.name}><PreviewCard lesson={lesson}/></div>
+            return <div style={{display: 'inline-block'}} key={lesson.name}><PreviewCard lesson={lesson} toolbar={t} onClick={props.onClick}/></div>
         }) 
     )
 

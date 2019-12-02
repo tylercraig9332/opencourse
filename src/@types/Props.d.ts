@@ -6,7 +6,8 @@ type CourseListProps = {
 
 type PreviewCardProps = {
     lesson: ILesson,
-    toolbar?: boolan
+    toolbar?: boolan,
+    onClick?: any
 }
 
 export {

@@ -29,7 +29,8 @@ export default function VideoCard(props : PreviewCardProps) {
     )
 
     return (
-        <Card title={props.lesson.name} 
+        <Card title={props.lesson.name} hoverable
+        onClick={() => props.onClick(props.lesson)}
         extra={drop} 
         style={cardStyle}
         actions={(props.toolbar) ? [

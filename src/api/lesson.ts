@@ -78,6 +78,33 @@ export const fetchAuth = (id : number) : Promise<boolean> => {
     }
     return fetch('/lesson/auth/' + id, initData)
     .then(res => res.json())
-    .then(res => {console.log(res); return res})
-    .catch((err) => {console.log(err); return false})
+    .then(res => {return res})
+    .catch((err) => {return false})
+}
+
+export const attachLesson = (lessonId : number, courseID : number, chapterID : number) => {
+    const init = {
+        body: JSON.stringify({
+            courseID: courseID,
+            chapterID: chapterID
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    }
+    fetch('/lesson/attach/' + lessonId, init)
+}
+
+export const fetchAttachments = async (courseID : number, chapterID : number) => {
+    const initData = {
+        body: null,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'GET'
+    }
+    let r = {}
+    await fetch(`/lesson/attach/${courseID}/${chapterID}`, initData).then(res=> r = res)
+    return r
 }

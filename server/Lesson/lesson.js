@@ -18,6 +18,9 @@ router.put('/:id', (req, res) => {
 .put('/preview/:id', (req, res) => {
     updateIfAuth(req.params.id, [{"preview": req.body.preview}], req.session.user)
 })
+.put('/attach/:id', (req, res) => {
+    updateIfAuth(req.params.id, [{"courseID": req.body.courseID}, {"chapterID": req.body.chapterID}], req.session.user)
+})
 
 router.get('/auth/:id', (req, res) => {
     // Evaluate if author's equal.
@@ -33,12 +36,15 @@ router.get('/auth/:id', (req, res) => {
     }
     model.list(limit).then(r => res.send(r))
 })
+.get('/attach/:courseID/:chapterID', (req, res) => {
+    model.read(undefined, req.params.courseID, req.params.chapterID).then(r => res.send(r))
+})
 .get('/:type/:limit', (req, res) => {
     let limit = 10
     if (!req.params.limit) {
         limit = req.params.limit
     }
-    model.list(limit, req.params.type)
+    model.list(limit, req.params.type, req.session.user).then(r => res.send(r))
 })
 .get('/:id', (req, res) =>  {
     // return lesson based on req.params.id:
@@ -51,12 +57,13 @@ router.delete('/:id', (req, res) => {
 })
 
 function updateIfAuth(id, data, user) {
+    console.log(id)
     model.read(id).then((lesson) => {
-        if (lesson.author == user) {
-            model.update(req.body.id, data)
+        if (lesson[0].author == user) {
+            model.update(id, data)
         }
         else {
-            console.log(`user ${user} attempted to update another lesson owned by ${lesson.author}`)
+            console.log(`user ${user} attempted to update another lesson owned by ${lesson[0].author}`)
         }
     })
 }

@@ -14,7 +14,9 @@ export default function LectureCard(props : PreviewCardProps) {
             <CommentIcon />,
             <LikeIcon />
         ] : undefined}
-        cover={<img alt={props.lesson.name} style={{maxWidth: '100%', height: '300px'}} src={props.lesson.preview}/>}>
+        cover={<img alt={props.lesson.name} style={{maxWidth: '100%', height: '300px'}} src={props.lesson.preview}/>} 
+        onClick={() => props.onClick(props.lesson)}
+        hoverable>
             <Meta title={props.lesson.name} description={props.lesson.description} />
         </Card>
     )

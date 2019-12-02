@@ -1,6 +1,7 @@
 const db =  require('../Postgres/db');
 
 function update(id, data) {
+    console.log(data)
     let sql = "UPDATE lesson SET "
     let vals = []
     for (let i = 0; i < data.length; i++) {
@@ -27,18 +28,28 @@ async function create(data) {
     return id
 }
 
-async function read(id) {
+async function read(id, courseID, chapterID) {
+    let q = "SELECT * FROM lesson WHERE id=" + id
+    if (id == undefined) {
+        // TODO: This will need to get moved to list not read, but I was tired when I wrote this :(
+        q = `SELECT * FROM lesson WHERE courseID=${courseID} AND chapterID=${chapterID}`
+    }
+    console.log(q)
     let lesson;
-    await db.one("SELECT * FROM lesson WHERE id=$1", id)
+    await db.any(q)
     .then((data) => lesson = data)
     return lesson
 }
 
-async function list(limit, type) {
+async function list(limit, type, user) {
     let q = "SELECT * FROM lesson LIMIT $1"
-    console.log(type)
     if (type != null && type != undefined) {
-        q = `SELECT * FROM lesson WHERE type='${type}' LIMIT $1`
+        if (type === 'yours' && user != undefined) {
+            q = `SELECT * FROM lesson WHERE author=${user} LIMIT $1`
+        }
+        else {
+            q = `SELECT * FROM lesson WHERE type='${type}' LIMIT $1`
+        }
     }
 
     let d = [];

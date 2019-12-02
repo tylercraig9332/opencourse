@@ -10,8 +10,8 @@ export default function Home() {
     return (
         <React.Fragment>
             <ListView fetchString="all" key="all" title="All Lessons"/>
-            {/*<ListView fetchString="video" key="video"/>
-            <ListView fetchString="lecture" key="lecture"/>*/}
+            <ListView fetchString="video" key="video" title="Videos"/>
+            <ListView fetchString="lecture" key="lecture" title="Lecture Notes"/>
         </React.Fragment>
     )
 }

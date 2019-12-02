@@ -88,6 +88,9 @@ export default function Nav() {
                     <Item key="all" onClick={() => redirect('/lessons/all')}><i className="fas fa-archive"></i> All</Item>
                     <Item key="popular" onClick={() => redirect('/lessons/popular')}><i className="far fa-gem"></i> Popular</Item>
                     <Item key="new" onClick={() => redirect('/lessons/new')}><i className="far fa-lightbulb"></i> New</Item>
+                    {logged ? 
+                    <Item key="user" onClick={() => redirect('/lessons/yours')}><i className="far fa-user-circle"></i> Made by You</Item> 
+                    : null}
                 </ItemGroup>
                 <Divider/>
                     <Item key="create" onClick={() => redirect('/lessons/build/')}>

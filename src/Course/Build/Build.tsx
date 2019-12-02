@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Details from './Details'
 import Chapter from './Chapter'
 import Preview from '../../Util/Preview'
-import { savePreview } from '../../api/course'
+import LoadSpin from '../../Util/LoadSpin'
 import './build.css'
 
 import { Button, message } from 'antd'
 
-import {IChapter, ILesson} from '../../@types/Interface'
+import {IChapter} from '../../@types/Interface'
 
-import { fetchDetails, fetchAuth } from '../../api/course'
+import { fetchDetails, fetchAuth, savePreview } from '../../api/course'
 import { fetchChapters, initChapters } from '../../api/chapter' 
 
 export default function Build() {
@@ -20,6 +20,8 @@ export default function Build() {
     const [coursePrev, setCoursePrev] = useState<string>('/static/')
 
     const [chapters, setChapters] = useState<IChapter[]>(initChapters)
+
+    const [loaded, setLoaded] = useState<boolean>(false)
 
     useEffect(() => {
         let windowID = Number(window.location.href.split('/')[5])
@@ -43,6 +45,8 @@ export default function Build() {
         fetchChapters(windowID).then((cdata: any) => {
             if (cdata.length < 1) cdata = initChapters
             setChapters(cdata)
+            
+            setLoaded(true)
         })
         // fetch data about course
         // also don't allow non-users to edit course with right permissions...
@@ -78,7 +82,8 @@ export default function Build() {
                 />
         )
     })
-    
+    // TODO: add more error handling: I don't think the array updates right but for now this works.
+    if (!loaded) return <LoadSpin message="Loading course..."/>
     return (
         <div className="container">
             <h1 className="dg">{(courseId === -1) ? 'Create New Course' : 'Edit Course'}</h1>
