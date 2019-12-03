@@ -4,9 +4,11 @@ export const initLesson = {
     name: 'New Lesson',
     description: 'Learn something new!',
     author: -1,
-    type: '',
+    type: 'lecture',
     content: '',
-    preview: '/static/waves'
+    preview: '/static/waves',
+    courseID: -1,
+    chapterID: -1
 } as ILesson
 
 export const saveLesson = async (id : number, data : any) => {
@@ -79,7 +81,7 @@ export const fetchAuth = (id : number) : Promise<boolean> => {
     return fetch('/lesson/auth/' + id, initData)
     .then(res => res.json())
     .then(res => {return res})
-    .catch((err) => {return false})
+    .catch((err) => {console.error(err); return false})
 }
 
 export const attachLesson = (lessonId : number, courseID : number, chapterID : number) => {

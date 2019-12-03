@@ -17,7 +17,7 @@ export default function Build() {
     const [courseName, setCourseName] = useState<string>('')
     const [courseDesc, setCourseDesc] = useState<string>('')
     const [courseId, setCourseId] = useState<number>(-1)
-    const [coursePrev, setCoursePrev] = useState<string>('/static/')
+    const [coursePrev, setCoursePrev] = useState<string>('/static/light_color.jpg')
 
     const [chapters, setChapters] = useState<IChapter[]>(initChapters)
 
@@ -41,6 +41,7 @@ export default function Build() {
         fetchDetails(windowID).then((data : any) => {
             setCourseName(data.name)
             setCourseDesc(data.description)
+            setCoursePrev(data.preview)
         })
         fetchChapters(windowID).then((cdata: any) => {
             if (cdata.length < 1) cdata = initChapters
@@ -53,7 +54,10 @@ export default function Build() {
     }, [])
 
     function handlePreview(uri : string) {
-        savePreview(courseId, uri)
+        if (uri != coursePrev) {
+            console.log(uri, coursePrev)
+            savePreview(courseId, uri)
+        }
         setCoursePrev(uri)
     }
 

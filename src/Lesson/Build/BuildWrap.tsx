@@ -17,9 +17,10 @@ export default function BuildWrap() {
     const [current, setCurrent] = useState<number>(0)
 
     useEffect(() => {
-        // TODO: Load init data on Lessons.
-        // Also can pull id from url
-        let windowID = Number(window.location.href.split('/')[5])
+        const ids = window.location.href.split('/')
+        let windowID = Number(ids[5])
+        let courseID = ids[6] !== undefined ? Number(ids[6]) : -1
+        let chapterID = ids[7] !== undefined ? Number(ids[7]) : -1
         if (windowID === 0 || Number.isNaN(windowID)) {
             windowID = -1
         }
@@ -30,10 +31,21 @@ export default function BuildWrap() {
                 window.setTimeout(() => window.location.href = '/lessons/all', 100)
             }
         })
-        loadLesson(windowID).then(l => {
+        loadLesson(windowID).then((l : ILesson) => {
             if (l == undefined) l = initLesson
+            if (chapterID != -1 && courseID != -1) {
+                // TODO: This doesn't save for right now for some unknown reason, but the course will still be made.
+                // I will fix this at a later time
+                l.chapterID = chapterID
+                l.courseID = courseID
+            }
+            //console.log(l)
             setLesson(l)
-            setId(Number(l.id))
+            let i = id
+            if (l.id != undefined) {
+                i = (Number(l.id))
+            }
+            setId(i)
         })
     }, [])
 
@@ -75,6 +87,15 @@ export default function BuildWrap() {
             }
         }
         setCurrent(next)
+    }
+
+    function done() {
+        message.success('Success!');
+        if (lesson.courseID != -1) {
+            window.setTimeout(() => window.location.href = '/courses/build/' + lesson.courseID, 500)
+        }
+        console.log(lesson.courseID)
+        window.setTimeout(() => window.location.href = "/lessons/all", 500)
     }
 
     const steps = [
@@ -119,7 +140,7 @@ export default function BuildWrap() {
                     </Button>
                 )}
                 {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => {message.success('Success!'); window.setTimeout(() => window.location.href = "/lessons/all", 500)}} style={{ marginLeft: 8 }}>
+                    <Button type="primary" onClick={done} style={{ marginLeft: 8 }}>
                     Done
                     </Button>
                 )}

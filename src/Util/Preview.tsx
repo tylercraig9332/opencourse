@@ -11,6 +11,17 @@ export default function Preview(props : any) {
     const [active, setActive] = useState<number>(-1)
 
     useEffect(() => {
+        // find active index of url path
+        let a = -1
+        for (let i = 0; i < PreviewImages.length; i++) {
+            if (props.preview != null && PreviewImages[i].imageUrl === props.preview) {
+                a = i
+            }
+        }
+        setActive(a)
+    }, [])
+
+    useEffect(() => {
         let uri = props.preview
         if (active !== -1) {
             const obj = PreviewImages[active]

@@ -15,6 +15,7 @@ export const saveChapter = async (courseId : number, chapter : IChapter) => {
     let returnId = -1;
     await fetch('/chapter/', initData).then((res : any) => res.json())
     .then((res : any) => {
+        console.log(res)
         returnId = res.id
     })
     return returnId

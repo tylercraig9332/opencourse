@@ -34,8 +34,8 @@ export default function LessonTimeline(props : LTProps) {
     }, [])
 
     function addLesson() : void {
-        // TOOD: handle redirect and request to make a new lesson with this chapter and course id
-        console.log("new")
+        console.log("new course")
+        window.location.href = `/lessons/build/-1/${props.courseID}/${props.chapterID}`
     } 
 
     function importLesson(lesson : ILesson) {
@@ -107,7 +107,7 @@ export default function LessonTimeline(props : LTProps) {
                     </div>
                 </Modal>
                 <div className="addLesson">
-                    <Button style={{width: 300}} onClick={() => setAddModal(true)}>Add Lesson</Button>
+                    <Button style={{width: 400}} onClick={() => setAddModal(true)}>Add Lesson</Button>
                 </div>
             </Item>
         </Timeline>

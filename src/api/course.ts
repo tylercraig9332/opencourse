@@ -90,6 +90,8 @@ export const listCourses = async (byType : string) => {
 }
 
 export const savePreview = (id : number, url : string) => {
+    if (url.length < 1 || url === '') return
+    console.log(url)
     const initData = {
         body: JSON.stringify({preview: url}),
         headers: {

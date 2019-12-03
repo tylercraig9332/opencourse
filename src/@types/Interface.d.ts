@@ -11,6 +11,7 @@ export interface ILesson {
     content: string,
     author: number,
     preview?: string,
-    chapterId?: number,
+    chapterID?: number,
+    courseID?: number,
     id?: number | string
 }

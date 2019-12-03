@@ -37,7 +37,7 @@ router.get('/auth/:id', (req, res) => {
     model.list(limit).then(r => res.send(r))
 })
 .get('/attach/:courseID/:chapterID', (req, res) => {
-    model.read(undefined, req.params.courseID, req.params.chapterID).then(r => res.send(r))
+    model.list(100, undefined, undefined, req.params.courseID, req.params.chapterID).then(r => res.send(r))
 })
 .get('/:type/:limit', (req, res) => {
     let limit = 10
@@ -59,11 +59,11 @@ router.delete('/:id', (req, res) => {
 function updateIfAuth(id, data, user) {
     console.log(id)
     model.read(id).then((lesson) => {
-        if (lesson[0].author == user) {
+        if (lesson.author == user) {
             model.update(id, data)
         }
         else {
-            console.log(`user ${user} attempted to update another lesson owned by ${lesson[0].author}`)
+            console.log(`user ${user} attempted to update another lesson owned by ${lesson.author}`)
         }
     })
 }

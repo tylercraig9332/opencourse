@@ -28,20 +28,16 @@ async function create(data) {
     return id
 }
 
-async function read(id, courseID, chapterID) {
+async function read(id) {
     let q = "SELECT * FROM lesson WHERE id=" + id
-    if (id == undefined) {
-        // TODO: This will need to get moved to list not read, but I was tired when I wrote this :(
-        q = `SELECT * FROM lesson WHERE courseID=${courseID} AND chapterID=${chapterID}`
-    }
     console.log(q)
     let lesson;
-    await db.any(q)
+    await db.one(q)
     .then((data) => lesson = data)
     return lesson
 }
 
-async function list(limit, type, user) {
+async function list(limit, type, user, courseID, chapterID) {
     let q = "SELECT * FROM lesson LIMIT $1"
     if (type != null && type != undefined) {
         if (type === 'yours' && user != undefined) {
@@ -50,6 +46,8 @@ async function list(limit, type, user) {
         else {
             q = `SELECT * FROM lesson WHERE type='${type}' LIMIT $1`
         }
+    } else if (courseID != undefined && chapterID != undefined) {
+        q = `SELECT * FROM lesson WHERE courseID=${courseID} AND chapterID=${chapterID}`
     }
 
     let d = [];
