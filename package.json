@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "npm run start && nodemon server.js localhost 8080",
-    "prod": "npm i && (node server.js & npm start &)",
+    "prod": "(node server.js & npm start &)",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

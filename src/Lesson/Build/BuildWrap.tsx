@@ -131,25 +131,25 @@ export default function BuildWrap() {
                     }
                 </Steps>
             <hr></hr>
-             </div>
-             <div className="steps-content">{steps[current].content}</div>
-             <div className="steps-action" style={{float: 'right', marginLeft: '3rem', marginTop: 10, marginBottom: 10}}>
-                {current > 0 && (
-                    <Button onClick={() => setCurrent(current - 1)}>
-                    Previous
-                    </Button>
-                )}
-                {current === steps.length - 1 && (
-                    <Button type="primary" onClick={done} style={{ marginLeft: 8 }}>
-                    Done
-                    </Button>
-                )}
-                {current < steps.length - 1 && (
-                    <Button type="primary" onClick={next} style={{ marginLeft: 8 }}>
-                    Next
-                    </Button>
-                )}
-                </div>
+            </div>
+            <div className="steps-content">{steps[current].content}</div>
+            <div className="steps-action" style={{float: 'right', marginLeft: '3rem', marginTop: 10, marginBottom: 10}}>
+            {current > 0 && (
+                <Button onClick={() => setCurrent(current - 1)}>
+                Previous
+                </Button>
+            )}
+            {current === steps.length - 1 && (
+                <Button type="primary" onClick={done} style={{ marginLeft: 8 }}>
+                Done
+                </Button>
+            )}
+            {current < steps.length - 1 && (
+                <Button type="primary" onClick={next} style={{ marginLeft: 8 }}>
+                Next
+                </Button>
+            )}
+            </div>
         </div>
     )
 }
