@@ -25,3 +25,8 @@ package-lock.json
 keys.js
 
 server/APIs
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
